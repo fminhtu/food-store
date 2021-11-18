@@ -4,7 +4,7 @@ const express = require('express')
 const handlebars = require('express-handlebars');
 const app = express()
 const port = process.env.PORT || 3000
-const url = "http://localhost:3000/";
+const url = "https://hcmus-web-2021.herokuapp.com/";
 //app.use(morgan('combined'))
 
 //static file
