@@ -4,11 +4,17 @@ const router = express.Router();
 const productsController = require('../app/controllers/ProductsController');
 
 //product + '/:slug'
+router.get('/combo/:slug',productsController.comboDetail);
 router.get('/combo',productsController.combo);
-router.use('/pizza',productsController.pizza);
+router.get('/pizza/:slug',productsController.pizzaDetail);
+router.get('/pizza',productsController.pizza);
+router.get('/burger/:slug',productsController.burgerDetail);
 router.get('/burger',productsController.burger);
+router.get('/chicken/:slug',productsController.chickenDetail);
 router.get('/chicken',productsController.chicken);
+router.get('/dinner/:slug',productsController.dinnerDetail);
 router.get('/dinner',productsController.dinner);
+router.get('/drink/:slug',productsController.drinkDetail);
 router.get('/drink',productsController.drink);
 
 //product + '/'

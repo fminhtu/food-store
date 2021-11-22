@@ -3,11 +3,11 @@
       <div class = "card">
         <!-- card left -->
         <div class = "product-imgs">
-          <img src = "https://s3-eu-west-1.amazonaws.com/brussels-images/content/gallery/visit/article/street-food/intro-streetfood-my-tannour-resized_sq_640.jpg" alt = "shoe image">
+          <img src = "{{detail.image}}" alt = "food image">
         </div>
         <!-- card right -->
         <div class = "product-content">
-          <h2 class = "product-title" style="color:#27ae60;">Hamburger</h2>
+          <h2 class = "product-title" style="color:#27ae60;">{{detail.slug}}</h2>
           <a href = "#" class = "product-link">visit food store</a>
           <div class = "product-rating">
             <i class = "fas fa-star"></i>
@@ -15,21 +15,20 @@
             <i class = "fas fa-star"></i>
             <i class = "fas fa-star"></i>
             <i class = "fas fa-star-half-alt"></i>
-            <span>4.7(21)</span>
+            <span>{{detail.rating}} ({{detail.num_rating}})</span>
           </div>
 
           <div class = "product-price">
-            <p class = "last-price">Old Price: <span>$257.00</span></p>
-            <p class = "new-price">New Price: <span>$249.00 (5%)</span></p>
+            <p class = "last-price">Old Price: <span>$ {{detail.old_price}}</span></p>
+            <p class = "new-price">New Price: <span>$+{{detail.new_price}} (5%)</span></p>
           </div>
 
           <div class = "product-detail">
             <h2>about this item: </h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.</p>
+            <p>{{detail.description}}</p>
             <ul>
-              <li>Category: <span>Food</span></li>
-              <li>Shipping Area: <span>All over the world</span></li>
+              <li>Category: <span>{{detail.category}}</span></li>
+              <li>Remaining: <span>{{detail.in_stock}}</span></li>
               <li>Shipping Fee: <span>Free</span></li>
             </ul>
           </div>

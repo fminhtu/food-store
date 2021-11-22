@@ -1,5 +1,6 @@
 const Menu = require('../models/Menu');
 const { ToArrObject } = require('../../util/mongoose');
+const { ToObject } = require('../../util/mongoose');
 
 
 class ProductsController{
@@ -7,7 +8,7 @@ class ProductsController{
     //get//product
     index(req,res,next){
         Menu.find({})
-            .then(cs => res.render('product',{ 
+            .then(cs => res.render('product_category/combo',{ 
                 cs : ToArrObject(cs)
             }))
             .catch(next);
@@ -22,10 +23,26 @@ class ProductsController{
             .catch(next);
     }
 
+    comboDetail(req,res,next){
+        Menu.findOne({slug: req.params.slug})
+            .then(detail => res.render('product_category/detail',{ 
+                detail : ToObject(detail)
+            }))
+            .catch(next);
+    }
+
     pizza(req,res,next){
         Menu.find({category:'pizza'})
             .then(cs => res.render('product_category/combo',{ 
                 cs : ToArrObject(cs)
+            }))
+            .catch(next);
+    }
+
+    pizzaDetail(req,res,next){
+        Menu.findOne({slug: req.params.slug})
+            .then(detail => res.render('product_category/detail',{ 
+                detail : ToObject(detail)
             }))
             .catch(next);
     }
@@ -38,10 +55,26 @@ class ProductsController{
             .catch(next);
     }
 
+    burgerDetail(req,res,next){
+        Menu.findOne({slug: req.params.slug})
+            .then(detail => res.render('product_category/detail',{ 
+                detail : ToObject(detail)
+            }))
+            .catch(next);
+    }
+
     chicken(req,res,next){
         Menu.find({category:'chicken'})
             .then(cs => res.render('product_category/combo',{ 
                 cs : ToArrObject(cs)
+            }))
+            .catch(next);
+    }
+
+    chickenDetail(req,res,next){
+        Menu.findOne({slug: req.params.slug})
+            .then(detail => res.render('product_category/detail',{ 
+                detail : ToObject(detail)
             }))
             .catch(next);
     }
@@ -54,10 +87,26 @@ class ProductsController{
             .catch(next);
     }
 
+    dinnerDetail(req,res,next){
+        Menu.findOne({slug: req.params.slug})
+            .then(detail => res.render('product_category/detail',{ 
+                detail : ToObject(detail)
+            }))
+            .catch(next);
+    }
+
     drink(req,res,next){
         Menu.find({category:'drink'})
             .then(cs => res.render('product_category/combo',{ 
                 cs : ToArrObject(cs)
+            }))
+            .catch(next);
+    }
+
+    drinkDetail(req,res,next){
+        Menu.findOne({slug: req.params.slug})
+            .then(detail => res.render('product_category/detail',{ 
+                detail : ToObject(detail)
             }))
             .catch(next);
     }

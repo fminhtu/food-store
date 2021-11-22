@@ -1,31 +1,31 @@
 <section class="category">
 
-    <a href="combo" class="box">
+    <a href="/product/combo" class="box">
         <img src="../image/cat-1.png" alt="">
         <h3>combo</h3>
     </a>
 
-    <a href="pizza" class="box">
+    <a href="/product/pizza" class="box">
         <img src="../image/cat-2.png" alt="">
         <h3>pizza</h3>
     </a>
 
-    <a href="burger" class="box">
+    <a href="/product/burger" class="box">
         <img src="../image/cat-3.png" alt="">
         <h3>burger</h3>
     </a>
 
-    <a href="chicken" class="box">
+    <a href="/product/chicken" class="box">
         <img src="../image/cat-4.png" alt="">
         <h3>chicken</h3>
     </a>
 
-    <a href="dinner" class="box">
+    <a href="/product/dinner" class="box">
         <img src="../image/cat-5.png" alt="">
         <h3>dinner</h3>
     </a>
 
-    <a href="drink" class="box">
+    <a href="/product/drink" class="box">
         <img src="../image/cat-6.png" alt="">
         <h3>drinks</h3>
     </a>
@@ -57,10 +57,10 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
-                    <span> (50) </span>
+                    <span> ({{this.in_stock}}) </span>
                 </div>
                 <div class="price">{{this.new_price}} <span>{{this.old_price}}</span></div>
-                <a href="detail" class="btn">BUY NOW</a>
+                <a href="/product/{{this.category}}/{{this.slug}}" class="btn">BUY NOW</a>
             </div>
         </div>
         {{/each}}
