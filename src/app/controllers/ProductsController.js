@@ -8,8 +8,8 @@ class ProductsController{
     //get//product
     index(req,res,next){
         Menu.find({})
-            .then(cs => res.render('product_category/category',{ 
-                cs : ToArrObject(cs)
+            .then(item => res.render('product_category/category',{ 
+                item : ToArrObject(item)
             }))
             .catch(next);
     }
@@ -17,8 +17,8 @@ class ProductsController{
     //get : product/category
     combo(req,res,next){
         Menu.find({category:'combo'})
-            .then(cs => res.render('product_category/category',{ 
-                cs : ToArrObject(cs)
+            .then(item => res.render('product_category/category',{ 
+                item : ToArrObject(item)
             }))
             .catch(next);
     }
@@ -33,8 +33,8 @@ class ProductsController{
 
     pizza(req,res,next){
         Menu.find({category:'pizza'})
-            .then(cs => res.render('product_category/category',{ 
-                cs : ToArrObject(cs)
+            .then(item => res.render('product_category/category',{ 
+                item : ToArrObject(item)
             }))
             .catch(next);
     }
@@ -49,8 +49,8 @@ class ProductsController{
 
     burger(req,res,next){
         Menu.find({category:'burger'})
-            .then(cs => res.render('product_category/category',{ 
-                cs : ToArrObject(cs)
+            .then(item => res.render('product_category/category',{ 
+                item : ToArrObject(item)
             }))
             .catch(next);
     }
@@ -65,8 +65,8 @@ class ProductsController{
 
     chicken(req,res,next){
         Menu.find({category:'chicken'})
-            .then(cs => res.render('product_category/category',{ 
-                cs : ToArrObject(cs)
+            .then(item => res.render('product_category/category',{ 
+                item : ToArrObject(item)
             }))
             .catch(next);
     }
@@ -81,8 +81,8 @@ class ProductsController{
 
     dinner(req,res,next){
         Menu.find({category:'side-dishes'})
-            .then(cs => res.render('product_category/category',{ 
-                cs : ToArrObject(cs)
+            .then(item => res.render('product_category/category',{ 
+                item : ToArrObject(item)
             }))
             .catch(next);
     }
@@ -97,8 +97,8 @@ class ProductsController{
 
     drink(req,res,next){
         Menu.find({category:'drink'})
-            .then(cs => res.render('product_category/category',{ 
-                cs : ToArrObject(cs)
+            .then(item => res.render('product_category/category',{ 
+                item : ToArrObject(item)
             }))
             .catch(next);
     }

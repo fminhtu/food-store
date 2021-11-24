@@ -12,9 +12,7 @@ app.use('/',sitesRouter);
 //   res.render('product');
 // })
 
-app.get('/detail', (req, res) => {
-  res.render('detail');
-})
+
 
 
 }

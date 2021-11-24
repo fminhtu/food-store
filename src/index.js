@@ -5,7 +5,10 @@ const path = require('path')
 const express = require('express')
 
 const handlebars = require('express-handlebars');
-const app = express()
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 3000
 // const url = "https://hcmus-web-2021.herokuapp.com/";
 

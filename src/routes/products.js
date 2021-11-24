@@ -4,6 +4,7 @@ const router = express.Router();
 const productsController = require('../app/controllers/ProductsController');
 
 //product + '/:slug'
+
 router.get('/combo/:slug',productsController.comboDetail);
 router.get('/combo',productsController.combo);
 router.get('/pizza/:slug',productsController.pizzaDetail);
