@@ -13,7 +13,9 @@ const Menu = new Schema({
     in_stock:{ type: Number },
     num_rating:{ type: Number },
     slug:{ type: String, maxlength:100 },
-    description:{ type: String, maxlength:600  }
+    description:{ type: String, maxlength:600  },
+    creatAt: { type:Date, default:Date.now },
+    updateAt: { type:Date, default:Date.now }
     
 });
 
