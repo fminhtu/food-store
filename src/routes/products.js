@@ -17,9 +17,7 @@ router.get('/side-dishes/:slug',productsController.dinnerDetail);
 router.get('/side-dishes',productsController.dinner);
 router.get('/drink/:slug',productsController.drinkDetail);
 router.get('/drink',productsController.drink);
-
 //product + '/'
 router.get('/',productsController.index);
-
 
 module.exports = router;

@@ -3,17 +3,33 @@ const { ToArrObject } = require('../../util/mongoose');
 const { ToObject } = require('../../util/mongoose');
 
 
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
+
 class ProductsController{
 
     //get//product
     index(req,res,next){
+        if(req.query.search) {
+            const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+            Menu.find({name: regex},{},{option: "i"})
+                .then(item => res.render('product_category/category',{
+                    item : ToArrObject(item)
+                }))
+                .catch(next);
+        }
+     else {
+        // Get all campgrounds from DB
         Menu.find({})
-            .then(item => res.render('product_category/category',{ 
+            .then(item => res.render('product_category/category',{
                 item : ToArrObject(item)
             }))
             .catch(next);
+        }
     }
-
     //get : product/category
     combo(req,res,next){
         Menu.find({category:'combo'})
@@ -110,6 +126,8 @@ class ProductsController{
             }))
             .catch(next);
     }
-    
 }
+
+
+
 module.exports = new ProductsController;
