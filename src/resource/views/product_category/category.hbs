@@ -71,6 +71,17 @@
 
 </section>
 
+<div class="center">
+    <div class="pagination">
+   {{#each totalPageArr}}
+            {{#if this.isCurrent}}
+                <a href="/product{{this.category}}?page={{this.value}}" class = "active">{{this.value}}</a>
+            {{else}}
+                <a href="/product{{this.category}}?page={{this.value}}">{{this.value}}</a>
+            {{/if}}
+        {{/each}} 
+    </div>
+</div>
 
 
 
