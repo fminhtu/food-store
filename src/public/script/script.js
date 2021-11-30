@@ -29,47 +29,36 @@ window.onscroll = () =>{
     navbar.classList.remove('active');
 }
 
-document.querySelector('.home').onmousemove = (e) =>{
+// document.querySelector('.home').onmousemove = (e) =>{
 
-    let x = (window.innerWidth - e.pageX * 2) / 90;
-    let y = (window.innerHeight - e.pageY * 2) / 90;
+//     let x = (window.innerWidth - e.pageX * 2) / 90;
+//     let y = (window.innerHeight - e.pageY * 2) / 90;
 
-    document.querySelector('.home .home-parallax-img').style.transform = `translateX(${y}px) translateY(${x}px)`;
-}
+//     document.querySelector('.home .home-parallax-img').style.transform = `translateX(${y}px) translateY(${x}px)`;
+// }
 
-document.querySelector('.home').onmouseleave = () =>{
+// document.querySelector('.home').onmouseleave = () =>{
 
-    document.querySelector('.home .home-parallax-img').style.transform = `translateX(0px) translateY(0px)`;
-}   
+//     document.querySelector('.home .home-parallax-img').style.transform = `translateX(0px) translateY(0px)`;
+// }   
 
-const imgs = document.querySelectorAll('.img-select a');
-const imgBtns = [...imgs];
-let imgId = 1;
+// const imgs = document.querySelectorAll('.img-select a');
+// const imgBtns = [...imgs];
+// let imgId = 1;
 
-imgBtns.forEach((imgItem) => {
-    imgItem.addEventListener('click', (event) => {
-        event.preventDefault();
-        imgId = imgItem.dataset.id;
-        slideImage();
-    });
-});
+// imgBtns.forEach((imgItem) => {
+//     imgItem.addEventListener('click', (event) => {
+//         event.preventDefault();
+//         imgId = imgItem.dataset.id;
+//         slideImage();
+//     });
+// });
 
-function slideImage(){
-    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+// function slideImage(){
+//     const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
 
-    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
-}
+//     document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+// }
 
-window.addEventListener('resize', slideImage);
+// window.addEventListener('resize', slideImage);
 
-
-// document.querySelector('#search-icon').onclick = () =>{
-//     document.querySelector('#search-form').classList.toggle('active');
-//   }
-  
-//   document.querySelector('#close').onclick = () =>{
-//     document.querySelector('#search-form').classList.remove('active');
-//   }
-    
-const value = document.getElementById("search-box").value;
-console.log(value)
