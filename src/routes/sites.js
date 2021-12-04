@@ -10,6 +10,9 @@ router.post('/sign-in',passport.authenticate('local',
  { successRedirect: '/',
 failureRedirect: '/sign-in?wrong-password' }
 ));
+
+router.get('/logout',sitesController.logout);
+
 router.get('/sign-up',sitesController.up);
 router.get('/home',sitesController.home);
 router.get('/create',sitesController.create);

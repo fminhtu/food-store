@@ -4,13 +4,19 @@ class SitesController{
 
     //get//new
     home(req,res, next){
-        res.render('home');    
+        res.render('home', {user: req.user});    
     }
     
 
     //get; sign in
     in(req,res){
-        res.render('sign-in');
+        const wrongPass = req.query['wrong-password'] !== undefined;
+        res.render('sign-in',{wrongPass});
+    }
+
+    logout(req,res){
+        req.logout();
+        res.redirect('/')
     }
 
     //get: sign up

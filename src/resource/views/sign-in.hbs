@@ -6,10 +6,9 @@
         <h3>login form</h3>
         <input type="username" name="username" placeholder="enter your username" id="" class="box">
         <input type="password" name="password" placeholder="enter your password" id="" class="box">
-        <div class="remember">
-            <input type="checkbox" name="" id="remember-me">
-            <label for="remember-me">remember me</label>
-        </div>
+        {{#if wrongPass}}
+        <p style="font-size: smaller; color: red">Username or password is incorrect.</p>
+        {{/if}}
         <input type="submit" value="login now" class="btn">
         <p>forget password? <a href="#">click here</a></p>
         <p>don't have an account? <a href="sign-up">create one</a></p>
