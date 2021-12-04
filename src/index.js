@@ -1,11 +1,14 @@
 const db = require("./config/db/index");
 db.connect();
 
+const session = require("express-session");
 const path = require('path')
 const express = require('express')
-
 const handlebars = require('express-handlebars');
+const passport = require('passport');
 const app = express();
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -17,6 +20,10 @@ const route = require("./routes/index");
 
 //static file
 app.use(express.static(path.join(__dirname,'public')))
+
+app.use(session({ secret: "cats" }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.engine('.hbs', handlebars({extname: '.hbs'}));
 app.set('view engine', '.hbs');
