@@ -18,9 +18,9 @@ exports.register = async (name,username,password,email,phoneNumber,dateOfBirth,r
         username : username,
         password : pwdHashed,
         email: email,
-       dateOfBirth: dateOfBirth,
+        dateOfBirth: dateOfBirth,
         phoneNumber: phoneNumber,
-        image: "http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png",
+        image: "https://play-lh.googleusercontent.com/9lWRV--bbBVqN79jCoi7vBbXGirjbFe2RSDaZMfMmPp48s9zeMAb7oICWHmLVEyNCQ=s180-rw",
         role: role
     });
 }

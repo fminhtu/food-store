@@ -9,7 +9,7 @@ const User = new Schema({
     email: {type:String},
     phoneNumber: {type: String},
     dateOfBirth: {type: Date},
-    image: {Type:String},
+    image: {type:String},
     role: {type:String}
 });
 

@@ -5,10 +5,10 @@ const sitesController = require('../app/controllers/SitesController');
 const passport = require('../config/passport');
 
 
-router.get('/sign-in',sitesController.in);
-router.post('/sign-in',passport.authenticate('local',
- { successRedirect: '/',
-failureRedirect: '/sign-in?wrong-password' }
+router.get('/sign-in',sitesController.login);
+router.post('/sign-in',passport.authenticate('local',{  
+    successRedirect: '/',
+    failureRedirect: '/sign-in?wrong-password' }
 ));
 router.get('/logout',sitesController.logout);
 router.get('/sign-up',sitesController.up);

@@ -21,14 +21,23 @@ const route = require("./routes/index");
 //static file
 app.use(express.static(path.join(__dirname,'public')))
 
-app.use(session({ secret: "cats" }));
+app.use(session({ secret: "catsddd" }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(function (req,res,next){
   res.locals.user = req.user;
   next();
 })
-app.engine('.hbs', handlebars({extname: '.hbs'}));
+
+app.engine('.hbs', 
+  handlebars({
+    extname: '.hbs',
+    helpers: {
+      standardDate: (a)=> a.toString().slice(0,10),
+      sum: (a,b)=> a+b,
+    }
+  }),
+);
 app.set('view engine', '.hbs');
 
 app.set('views', path.join(__dirname,'resource/views'));

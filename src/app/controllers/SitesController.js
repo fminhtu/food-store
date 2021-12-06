@@ -10,7 +10,7 @@ class SitesController{
     
 
     //get; sign in
-    in(req,res){
+    login(req,res){
         const wrongPass = req.query['wrong-password'] !== undefined;
         res.render('sign-in',{wrongPass});
     }
@@ -25,9 +25,9 @@ class SitesController{
     res.render('sign-up');
     }
 
-    async submit(req,res){
+    submit(req,res){
         const {name,username,password,email,date,phoneNumber,role} = req.body;
-        const user = await userService.register(name,username,password,email,phoneNumber,date,role);
+        const user = userService.register(name,username,password,email,phoneNumber,date,role);
         res.redirect("/sign-in");
     }
 
