@@ -8,7 +8,7 @@
   box-sizing: border-box;
   outline: none;
   border: none;
-  text-decoration: none;
+  text-decoration: none !important;
   text-transform: capitalize;
   transition: .2s linear; }
 
@@ -45,11 +45,37 @@ section {
   padding: .7rem 1.8rem;
   font-size: 1.7rem;
   cursor: pointer;
-  color: #fff;
+  color: #fff !important;
   background: #27ae60;
   border-radius: .5rem; }
-  .btn:hover {
-    background: #130f40; }
+
+.btn-drop {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #27ae60;
+  border-radius: .5rem;
+  }
+
+  
+.mini-btn{
+  display: inline-block;
+  padding: .2rem .4rem;
+  font-size: 1rem;
+  min-width: 3rem;
+  text-align: center;
+  cursor: pointer;
+  color: #fff !important;
+  text-decoration: none;
+  background: #27ae60;
+  border-radius: .5rem;
+}
+.btn:hover,.mini-btn:hover {
+  background: #130f40; }
+.btn-drop:hover {
+  background: #ddf3e6;
+}
 
 .header {
   position: sticky;
@@ -214,8 +240,61 @@ section {
         .shopping-cart-container .cart-total .box h3 span {
           color: #27ae60; }
 
+.function-form-container {
+  top: 8.5rem;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  padding: 0 2rem;
+  }
+  
+  .function-form-container form {
+    margin: 2rem auto;
+    max-width: 100rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+    border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    border-radius: .5rem;
+    animation: fadeUp .4s linear; }
+    .function-form-container form h3 {
+      padding-bottom: 1rem;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      color: #130f40; }
+    .function-form-container form .box {
+      margin: .7rem 0;
+      border-radius: .5rem;
+      background: #f7f7f7;
+      padding: 1rem 1.2rem;
+      font-size: 1.6rem;
+      color: #130f40;
+      text-transform: none;
+      width: 100%; }
+    .function-form-container form .remember {
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: .5rem; }
+      .function-form-container form .remember label {
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #666; }
+    .function-form-container form .btn {
+      margin: 1rem 0;
+      width: 100%;
+      text-align: center; }
+    .function-form-container form p {
+      padding-top: 1rem;
+      font-size: 1.5rem;
+      color: #666; }
+      .function-form-container form p a {
+        color: #27ae60; }
+        .function-form-container form p a:hover {
+          color: #130f40;
+          text-decoration: underline; }
+
 .login-form-container {
-  position: fixed;
   top: 8.5rem;
   left: 0;
   right: 0;
@@ -269,6 +348,7 @@ section {
         .login-form-container form p a:hover {
           color: #130f40;
           text-decoration: underline; }
+
 
 .home {
   display: flex;
@@ -673,36 +753,6 @@ section {
       .footer .bottom .credit span {
         color: #27ae60; }
 
-.center {
-  text-align: center;
-}
-
-.pagination {
-  display: inline-block;
-}
-
-.check{
-  padding-left: 10mm;
-  font-size: medium;
-}
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color .3s;
-  border: 1px solid #ddd;
-  font-size: 22px;
-}
-
-.pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-  border: 1px solid #4CAF50;
-}
-
-.pagination a:hover:not(.active) {background-color: #ddd;}
-
 @media (max-width: 991px) {
   html {
     font-size: 55%; }
@@ -747,3 +797,30 @@ section {
     font-size: 3rem; }
   .home .content p {
     font-size: 1.5rem; } }
+    
+table,th,td{
+  border-bottom: 1px solid #27ae60;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9 !important;
+  min-width: 160px;
+  box-shadow: 4px 11px 16px 5px rgba(0, 0, 0, 0.2);
+  padding: 5px 5px !important;
+  z-index: 100;
+  height:fit-content !important;
+  left: -50px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
