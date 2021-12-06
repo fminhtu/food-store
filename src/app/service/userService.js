@@ -8,7 +8,7 @@ exports.findByUsername = (username) => {
 }
 
 exports.validPassword = async function (password,user){
-    return await user.password === password;
+   return bcrypt.compare(password,user.password);
 }
 
 exports.register = async (name,username,password,email,phoneNumber,dateOfBirth,role) => {

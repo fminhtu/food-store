@@ -8,7 +8,8 @@ passport.use(new LocalStrategy(
     if(!user){
          return done(null,false,{message: "Incorrect username"});
     }
-    if(!userService.validPassword(password,user)){
+    const valid = await userService.validPassword(password,user);
+    if(!valid){
         return done(null,false,{message: "Incorrect password"});
     }
     return done(null,user);
