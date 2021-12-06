@@ -7,8 +7,8 @@ const User = new Schema({
     username:{type:String},
     password:{type:String},
     email: {type:String},
-    phoneNumber: {type:String},
-    dateOfBirth: {type: String},
+    phoneNumber: {type: String},
+    dateOfBirth: {type: Date},
     image: {Type:String},
     role: {type:String}
 });

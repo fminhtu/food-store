@@ -681,6 +681,10 @@ section {
   display: inline-block;
 }
 
+.check{
+  padding-left: 10mm;
+  font-size: medium;
+}
 .pagination a {
   color: black;
   float: left;

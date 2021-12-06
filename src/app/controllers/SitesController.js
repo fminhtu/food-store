@@ -1,4 +1,5 @@
 const Menu = require('../models/Menu');
+const userService = require('../service/userService');
 
 class SitesController{
 
@@ -21,7 +22,13 @@ class SitesController{
 
     //get: sign up
     up(req,res){
-        res.render('sign-up');
+    res.render('sign-up');
+    }
+
+    async submit(req,res){
+        const {name,username,password,email,date,phoneNumber,role} = req.body;
+        const user = await userService.register(name,username,password,email,phoneNumber,date,role);
+        res.redirect("/sign-in");
     }
 
     //get : create

@@ -2,17 +2,20 @@
 
 <div class="login-form-container">
 
-    <form action="">
+    <form action="" method ="post">
         <h3>sign-up</h3>
-        <input type="email" name="" placeholder="enter your email" id="" class="box">
-        <input type="password" name="" placeholder="enter your password" id="" class="box">
-        <input type="password" name="" placeholder="confirm your password" id="" class="box">
-        <div class="remember">
-            <input type="checkbox" name="" id="remember-me">
-            <label for="remember-me">remember me</label>
-        </div>
+        <input type="text" name="name" placeholder="enter your full name" id="" class="box">
+        <input type="username" name="username" placeholder="enter your username" id="" class="box">
+        <input type="password" name="password" placeholder="enter your password" id="" class="box">
+        <input type="email" name="email" placeholder="enter your email" id="" class="box">
+        <input type="date" name="date" placeholder="enter your date of birth" id="" class="box">
+        <input type="text" name="phoneNumber" placeholder="enter your phone number" id="" class="box">
+        <label for="check" class="check">Seller</label>
+        <input type="checkbox" name = "role" value="Seller" id="check">
+        <label for="check" class="check">Customer</label>
+        <input type="checkbox" name="role" value="Customer" id="check">
         <input type="submit" value="sign-up" class="btn">
-        <p>forget password? <a href="#">click here</a></p>
+        {{!-- <p>forget password? <a href="#">click here</a></p> --}}
         <p>have an account? <a href="sign-in">click here</a></p>
     </form>
 
