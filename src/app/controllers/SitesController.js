@@ -25,12 +25,18 @@ class SitesController{
     res.render('sign-up');
     }
 
-    submit(req,res){
+    async submit(req,res){
         const {name,username,password,email,date,phoneNumber,role} = req.body;
-        const user = userService.register(name,username,password,email,phoneNumber,date,role);
+        const error = await userService.checkValidInput(name,username,password,email,date,phoneNumber,role);
+        if(!isEmpty(error)) {
+            res.render('sign-up',{error})
+        }
+        else{
+        const user = await userService.register(name,username,password,email,phoneNumber,date,role);
         res.redirect("/sign-in");
+        }
     }
-
+    
     //get : create
     create(req,res,next){
         res.render('create');

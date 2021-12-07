@@ -4,8 +4,8 @@
 
     <form action="#" method = "post">
         <h3>login form</h3>
-        <input type="username" name="username" placeholder="enter your username" id="" class="box">
-        <input type="password" name="password" placeholder="enter your password" id="" class="box">
+        <input type="username" name="username" placeholder="enter your username" id="" class="box" required>
+        <input type="password" name="password" placeholder="enter your password" id="" class="box" required>
         {{#if wrongPass}}
         <p style="font-size: smaller; color: red">Username or password is incorrect.</p>
         {{/if}}
