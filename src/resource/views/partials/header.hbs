@@ -38,7 +38,7 @@
                         <p class="btn-drop" >Log out</p>
                     </a>
                     {{else}}
-                    <a href="/sign-in">
+                    <a onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                         <p  class="btn-drop">Log in</p>
                     </a>
                     {{/if}}
@@ -62,7 +62,32 @@
     </div>
     
 </header>
+<div id="id01" class="modal form">
+  
+  <form class="modal-content animate" action="/action_page.php" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
 
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input class="textpass" type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input input class="textpass" type="password" placeholder="Enter Password" name="psw" required>
+        
+      <button class="form_btn" type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+    <div style="margin-left: 2rem;font-size:1.5rem;margin-bottom:2rem">
+        <p>forget password? <a href="#">click here</a></p>
+        <p>don't have an account? <a href="sign-up">create one</a></p>
+    </div>
+  </form>
+</div>
 
 <section class="search-form-container">
 
