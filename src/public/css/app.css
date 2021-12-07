@@ -132,7 +132,7 @@ section {
   right: 0;
   height: calc(100vh - 8.5rem);
   background: #fff;
-  z-index: 1000;
+  z-index: 100;
   display: none; }
   .search-form-container.active {
     display: block; }
@@ -162,7 +162,7 @@ section {
   top: 8.5rem;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 100;
   height: calc(100vh - 8.5rem);
   background: #fff;
   overflow-y: scroll;
@@ -834,7 +834,7 @@ table,th,td{
   min-width: 160px;
   box-shadow: 4px 11px 16px 5px rgba(0, 0, 0, 0.2);
   padding: 5px 5px !important;
-  z-index: 100;
+  z-index: 2000;
   height:fit-content !important;
   left: -50px;
 }
@@ -906,7 +906,7 @@ span.psw {
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 1000; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -919,7 +919,7 @@ span.psw {
 .modal_sign-up {
  /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 100; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */

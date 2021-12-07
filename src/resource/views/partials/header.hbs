@@ -26,12 +26,12 @@
                 
                 
                     {{#if user}}
-                    <a href="/product">
-                        <p class="btn-drop" >Hello World!</p>
+                    <a href="/user/account">
+                        <p class="btn-drop" >My profile</p>
                     </a>
                     
                     <a href="/product">
-                        <p class="btn-drop" >Hello World!</p>
+                        <p class="btn-drop" >function</p>
                     </a>   
 
                     <a href="/logout">
@@ -47,18 +47,6 @@
             </div>
 
         </div>
-
-
-
-        <!-- {{#if user}}
-         <a href="/logout">
-        <div id="login-btn" class="fas fa-user"></div>
-        </a>
-        {{else}}
-        <a href="/sign-in">
-        <div id="login-btn" class="fas fa-user"></div>
-        </a>
-        {{/if}} -->
     </div>
     
 </header>
@@ -158,11 +146,43 @@
 
             <h3 class="subtotal"> subtotal : <span>$200</span> </h3>
             <h3 class="total"> total : <span>$200</span> </h3>
-
-            <a href="#" class="btn">proceed to checkout</a>
+            {{#if user}}
+            <a onclick="document.getElementById('sign-in').style.display='block'" style="width:auto;" class="btn">proceed to checkout</a>
+            {{else}}
+            <a href="/sign-in" class="btn">proceed to checkout</a>
+            {{/if}}
 
         </div>
 
     </div>
 
 </section>
+
+<div id="sign-in" class="modal form">
+  
+  <form class="modal-content animate" action="" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('sign-in').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input class="textpass" type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input input class="textpass" type="password" placeholder="Enter Password" name="psw" required>
+        
+      <button class="form_btn" type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+    <div style="margin-left: 2rem;font-size:1.5rem;margin-bottom:2rem">
+        <p>forget password? <a href="#">click here</a></p>
+        <span onclick="document.getElementById('sign-in').style.display='none';document.getElementById('sign-up').style.display='block'">
+            <p>don't have an account? <a style="color:#27ae60;cursor: pointer;">create one</a></p>
+        </span>
+    </div>
+  </form>
+</div>
