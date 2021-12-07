@@ -38,7 +38,7 @@
                         <p class="btn-drop" >Log out</p>
                     </a>
                     {{else}}
-                    <a onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                    <a onclick="document.getElementById('sign-up').style.display='none';document.getElementById('sign-in').style.display='block'" style="width:auto;">
                         <p  class="btn-drop">Log in</p>
                     </a>
                     {{/if}}
@@ -48,25 +48,14 @@
 
         </div>
 
-
-
-        <!-- {{#if user}}
-         <a href="/logout">
-        <div id="login-btn" class="fas fa-user"></div>
-        </a>
-        {{else}}
-        <a href="/sign-in">
-        <div id="login-btn" class="fas fa-user"></div>
-        </a>
-        {{/if}} -->
     </div>
     
 </header>
-<div id="id01" class="modal form">
+<div id="sign-in" class="modal form">
   
-  <form class="modal-content animate" action="/action_page.php" method="post">
+  <form class="modal-content animate" action="" method="post">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('sign-in').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
     </div>
 
@@ -84,10 +73,49 @@
     </div>
     <div style="margin-left: 2rem;font-size:1.5rem;margin-bottom:2rem">
         <p>forget password? <a href="#">click here</a></p>
-        <p>don't have an account? <a href="sign-up">create one</a></p>
+        <span onclick="document.getElementById('sign-in').style.display='none';document.getElementById('sign-up').style.display='block'">
+            <p>don't have an account? <a style="color:#27ae60;cursor: pointer;">create one</a></p>
+        </span>
     </div>
   </form>
 </div>
+
+
+<div id="sign-up" class="modal form">
+  
+  <form class="modal-content animate" action="" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('sign-up').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">          
+        <h3>sign-up</h3>
+        <input type="text" name="name" placeholder="enter your full name" id="" class="textpass">
+        <input type="username" name="username" placeholder="enter your username" id="" class="textpass">
+        <input type="password" name="password" placeholder="enter your password" id="" class="textpass">
+        <input type="email" name="email" placeholder="enter your email" id="" class="textpass">
+        <input type="date" name="date" placeholder="enter your date of birth" id="" class="textpass">
+        <input type="text" name="phoneNumber" placeholder="enter your phone number" id="" class="textpass">
+        <label for="check" class="check">Seller</label>
+        <input type="checkbox" name = "role" value="Seller" id="check">
+        <label for="check" class="check">Customer</label>
+        <input type="checkbox" name="role" value="Customer" id="check">
+        <input type="submit" value="sign-up" class="form_btn">
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+    </div>
+    <div style="margin-left: 2rem;font-size:1.5rem;margin-bottom:2rem">
+        <p>forget password? <a href="#">click here</a></p>
+        <p>don't have an account? <a href="/sign-up">create one</a></p>
+    </div>
+  </form>
+</div>
+
+
+
+
 
 <section class="search-form-container">
 
