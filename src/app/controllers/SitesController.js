@@ -1,6 +1,15 @@
 const Menu = require('../models/Menu');
 const userService = require('../service/userService');
 
+function isEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+
+    return true;
+}
+
 class SitesController{
 
     //get//new
