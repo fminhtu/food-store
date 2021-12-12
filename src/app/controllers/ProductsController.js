@@ -1,6 +1,8 @@
 const Menu = require('../models/Menu');
 const { ToObject } = require('../../util/mongoose');
+const { ToArrObject } = require('../../util/mongoose');
 const ProductsService = require('../service/productsService');
+
 
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
@@ -151,12 +153,17 @@ class ProductsController{
             )
     }
 
-    drinkDetail(req,res,next){
-        Menu.findOne({slug: req.params.slug})
-            .then(detail => res.render('product_category/detail',{ 
-                detail : ToObject(detail)
-            }))
-            .catch(next);
+    async drinkDetail(req,res,next){
+        const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
+        res.render('product_category/detail',productWithComments);
+    }
+
+    async postComment(req,res,next){
+        if(!req.user){
+            return res.redirect('/sign-in')
+        }
+        const comment = await ProductsService.postComment(req.user.id,req.body.productId, req.body.content);
+        res.redirect('/product/drink/'+req.params.slug)
     }
     
 }

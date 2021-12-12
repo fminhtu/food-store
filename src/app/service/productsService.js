@@ -1,5 +1,6 @@
 const { ToArrObject } = require('../../util/mongoose');
-
+const Comment = require('../models/Comment');
+const Menu = require('../models/Menu');
 
 const perPage = 12;
 class ProductsService{
@@ -32,6 +33,21 @@ class ProductsService{
                 });
             } 
         return totalPageArr;    
+    }
+    postComment(userId,productId,content){
+        return new Comment(
+            {
+                userId: userId,
+                productId: productId,
+                content: content,
+                createAt: new Date()
+            }
+        ).save();
+    }
+    async getProductWithComment(slug){
+        const detail = await Menu.findOne({slug:slug}).lean();
+        const comments = await Comment.find({productId:detail.id}).lean();
+        return {detail,comments};
     }
 }
 

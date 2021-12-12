@@ -19,5 +19,6 @@ router.get('/drink/:slug',productsController.drinkDetail);
 router.get('/drink',productsController.drink);
 //product + '/'
 router.get('/',productsController.index);
+router.post('/drink/:slug/comments',productsController.postComment);
 
 module.exports = router;

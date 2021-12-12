@@ -5,7 +5,5 @@ class UsersController{
     viewAccount(req,res,next){
         res.render("UserAccount/profile")
     }
-    
-
 }
 module.exports = new UsersController;
