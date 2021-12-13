@@ -1070,7 +1070,6 @@ span.psw {
   max-width: 15rem;
   height: auto;
 }
-<<<<<<< HEAD
 .submit-pagination-active{
   width: 3em;
   height: 3em;
@@ -1082,7 +1081,7 @@ span.psw {
   height: 3em;
   border-radius:5px;
 }
-=======
+
 
 .btn-cart {
   display: inline-block;
@@ -1093,5 +1092,6 @@ span.psw {
   color: #fff !important;
   background: #27ae60;
   border-radius: .5rem; 
+
 }
->>>>>>> 7c443cf240a8732f275c3933a391015127beed20
+
