@@ -29,36 +29,36 @@ window.onscroll = () =>{
     navbar.classList.remove('active');
 }
 
-// document.querySelector('.home').onmousemove = (e) =>{
+$('#comment-form input[type=submit]').on('click',function(event){
+    event.preventDefault();
+    $.post(`/api/products/${$('#product-id').val()}/comments`,{
+        content: $('#content-id').val(),
+    },function(data){
+        const commentTemplate = Handlebars.compile(
+            document.getElementById("comment-template").innerHTML);
+        const commentHtml = commentTemplate(data);
+        $('#comment-list').prepend(commentHtml);
+    }).fail(function(data) {
+        console.log('failed',data);
+        if(data.status===401){
+            window.location.href =`/sign-in?redirect=${window.location.href}`;
+        }
+    });  
+});
 
-//     let x = (window.innerWidth - e.pageX * 2) / 90;
-//     let y = (window.innerHeight - e.pageY * 2) / 90;
-
-//     document.querySelector('.home .home-parallax-img').style.transform = `translateX(${y}px) translateY(${x}px)`;
-// }
-
-// document.querySelector('.home').onmouseleave = () =>{
-
-//     document.querySelector('.home .home-parallax-img').style.transform = `translateX(0px) translateY(0px)`;
-// }   
-
-// const imgs = document.querySelectorAll('.img-select a');
-// const imgBtns = [...imgs];
-// let imgId = 1;
-
-// imgBtns.forEach((imgItem) => {
-//     imgItem.addEventListener('click', (event) => {
-//         event.preventDefault();
-//         imgId = imgItem.dataset.id;
-//         slideImage();
-//     });
+// $('#comment-form input[type=submit]').on('click',function(event){
+//     event.preventDefault();
+//     $.post(`/api/products/${$('#product-id').val()}/comments`,{
+//         content: $('#content-id').val(),
+//     },function(data){
+//         const commentTemplate = Handlebars.compile(
+//             document.getElementById("comment-template").innerHTML);
+//         const commentHtml = commentTemplate(data);
+//         $('#comment-list').html(commentHtml);
+//     }).fail(function(data) {
+//         console.log('failed',data);
+//         if(data.status===401){
+//             window.location.href =`/sign-in?redirect=${window.location.href}`;
+//         }
+//     });  
 // });
-
-// function slideImage(){
-//     const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
-
-//     document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
-// }
-
-// window.addEventListener('resize', slideImage);
-

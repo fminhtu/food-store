@@ -1013,6 +1013,7 @@ span.psw {
 }
 .center {
   text-align: center;
+  margin-top: 2em;
 }
 .comment{
   padding: 0 20% 0 20%;

@@ -68,15 +68,14 @@
 </div>
 <div class="comment">
   <form clsss="form-comment" id="comment-form" method="post" action="/product/drink/{{detail.slug}}/comments">
-    <input type="hidden" name="productId" value="{{detail.id}}">
-    <input class="comment-input" type="text" name="content" placeholder="Your comment">
+    <input type="hidden" name="productId" value="{{detail.id}}" id="product-id">
+    <input class="comment-input" type="text" name="content" placeholder="Your comment" id="content-id">
     <input class="comment-btn" type="submit" value="Comment">
   </form>
   <div id="comments">
-    <ul>
+    <ul id="comment-list">
       {{#each comments}}
       <div class="comment-card">
-        
           <div class="commetn-info">
             <img class="cmt-img" src="https://www.w3schools.com/howto/img_avatar2.png" alt="">
             <div style="padding-left:1.2em;">
@@ -93,4 +92,18 @@
     </ul>
   </div>
 </div>
+<script id="comment-template" type="text/x-handlebars">
+  <div class="comment-card">
+    <div class="commetn-info">
+      <img class="cmt-img" src="https://www.w3schools.com/howto/img_avatar2.png" alt="">
+      <div style="padding-left:1.2em;">
+        <p class ="cmt-name">\{{userName}}</p>
+        <p class ="cmt-date">\{{creatAt}}</p>
+      </div>
+    </div>
+    <div class="comment-content">
+      <p class ="cmt-content">\{{content}}</p>
+    </div>
+  </div>
+</script>
 

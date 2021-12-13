@@ -1,6 +1,4 @@
 const Menu = require('../models/Menu');
-const { ToObject } = require('../../util/mongoose');
-const { ToArrObject } = require('../../util/mongoose');
 const ProductsService = require('../service/productsService');
 
 
@@ -14,14 +12,14 @@ class ProductsController{
     index(req,res,next){
         if(req.query.search) {
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-            Menu.find({name: regex},{},{option: "i"})
+            Menu.find({name: regex},{},{option: "i"}).lean()
                 .then(item => res.render('product_category/category',{
-                    item : ToArrObject(item)
+                    item : item
                 }))
                 .catch(next);
         }
      else {
-        Promise.all([Menu.find({}),Menu.count({})])
+        Promise.all([Menu.find({}).lean(),Menu.count({})])
         .then(([item,count])=>{
             let items = ProductsService.viewItem(req.query.page,count,item);
             let totalPageArr = ProductsService.paginationArray(req.query.page,count,"");           
@@ -35,35 +33,19 @@ class ProductsController{
     }
 
     //get : product/category
-    combo(req,res,next){
-        Promise.all([Menu.find({category:'combo'}),Menu.count({category:'combo'})])
-            .then(([item,count])=>{
-                let items = ProductsService.viewItem(req.query.page,count,item);
-                let totalPageArr = ProductsService.paginationArray(req.query.page,count,"/combo");             
-                res.render('product_category/category',{
-                    item: items,
-                    totalPageArr,
-                })
-            }
-            )
+    async combo(req,res,next){
+        const productsWithPagination = await ProductsService.getProductsWithPagination("combo",req.params.slug);
+        res.render('product_category/category',productsWithPagination);
     }
 
     async comboDetail(req,res,next){
         const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
-        res.render('product_category/detail',productWithComments);
+        res.render('product_category/detail',productsWithPagination);
     }
 
-    pizza(req,res,next){
-        Promise.all([Menu.find({category:'pizza'}),Menu.count({category:'pizza'})])
-            .then(([item,count])=>{
-                let items = ProductsService.viewItem(req.query.page,count,item);
-                let totalPageArr = ProductsService.paginationArray(req.query.page,count,"/pizza");             
-                res.render('product_category/category',{
-                    item: items,
-                    totalPageArr,
-                })
-            }
-            )
+    async pizza(req,res,next){
+        const productsWithPagination = await ProductsService.getProductsWithPagination("pizza",req.params.slug);
+        res.render('product_category/category',productsWithPagination);
     }
 
     async pizzaDetail(req,res,next){
@@ -71,17 +53,9 @@ class ProductsController{
         res.render('product_category/detail',productWithComments);
     }
 
-    burger(req,res,next){
-        Promise.all([Menu.find({category:'burger'}),Menu.count({category:'burger'})])
-            .then(([item,count])=>{
-                let items = ProductsService.viewItem(req.query.page,count,item);
-                let totalPageArr = ProductsService.paginationArray(req.query.page,count,"/burger");             
-                res.render('product_category/category',{
-                    item: items,
-                    totalPageArr,
-                })
-            }
-            )
+    async burger(req,res,next){
+        const productsWithPagination = await ProductsService.getProductsWithPagination("burger",req.params.slug);
+        res.render('product_category/category',productsWithPagination);
     }
 
     async burgerDetail(req,res,next){
@@ -89,17 +63,9 @@ class ProductsController{
         res.render('product_category/detail',productWithComments);
     }
 
-    chicken(req,res,next){
-        Promise.all([Menu.find({category:'chicken'}),Menu.count({category:'chicken'})])
-            .then(([item,count])=>{
-                let items = ProductsService.viewItem(req.query.page,count,item);
-                let totalPageArr = ProductsService.paginationArray(req.query.page,count,"/chicken");             
-                res.render('product_category/category',{
-                    item: items,
-                    totalPageArr,
-                })
-            }
-            )
+    async chicken(req,res,next){
+        const productsWithPagination = await ProductsService.getProductsWithPagination("chicken",req.params.slug);
+        res.render('product_category/category',productsWithPagination);
     }
 
     async chickenDetail(req,res,next){
@@ -107,17 +73,9 @@ class ProductsController{
         res.render('product_category/detail',productWithComments);
     }
 
-    dinner(req,res,next){
-        Promise.all([Menu.find({category:'side-dishes'}),Menu.count({category:'side-dishes'})])
-            .then(([item,count])=>{
-                let items = ProductsService.viewItem(req.query.page,count,item);
-                let totalPageArr = ProductsService.paginationArray(req.query.page,count,"/side-dishes");             
-                res.render('product_category/category',{
-                    item: items,
-                    totalPageArr,
-                })
-            }
-            )
+    async dinner(req,res,next){
+        const productsWithPagination = await ProductsService.getProductsWithPagination("side-dishes",req.params.slug);
+        res.render('product_category/category',productsWithPagination);
     }
 
     async dinnerDetail(req,res,next){
@@ -125,17 +83,9 @@ class ProductsController{
         res.render('product_category/detail',productWithComments);
     }
 
-    drink(req,res,next){
-        Promise.all([Menu.find({category:'drink'}),Menu.count({category:'drink'})])
-            .then(([item,count])=>{
-                let items = ProductsService.viewItem(req.query.page,count,item);
-                let totalPageArr = ProductsService.paginationArray(req.query.page,count,"/drink");             
-                res.render('product_category/category',{
-                    item: items,
-                    totalPageArr,
-                })
-            }
-            )
+    async drink(req,res,next){
+        const productsWithPagination = await ProductsService.getProductsWithPagination("drink",req.params.slug);
+        res.render('product_category/category',productsWithPagination);
     }
 
     async drinkDetail(req,res,next){
