@@ -1,7 +1,9 @@
 const Comment = require('../models/Comment');
 const Menu = require('../models/Menu');
+const Cart = require('../models/Cart');
 
-const perPage = 12;
+
+const perPage = 4;
 class ProductsService{
     viewItem(pageRequest,numItem,items){
         let page = parseInt(pageRequest)||1;
@@ -49,6 +51,32 @@ class ProductsService{
         const comments = await Comment.find({productId:detail.id}).lean();
         return {detail,comments};
     }
+
+    addCart(userId, productId,productName,image, price,quantity){
+        return new Cart(
+            {
+                userId: userId,
+                productId: productId,
+                productName: productName,
+                image: image,
+                price: price,
+                quantity: quantity
+            }
+        ).save();
+    }
+
+    async getCart(userId){
+        return await Cart.find({userId: userId}).lean();
+    }
+
+    totalPrice(cart){
+        let price = 0;
+        for(let i = 0 ; i < cart.length;i++){
+            price = price+cart[i].price*cart[i].quantity;
+        }
+        return price;
+    }
+    
     async getProductsWithPagination(category,pageRequest){
         const count = await Menu.count({category:category});
         const products = await Menu.find({category:category}).lean();

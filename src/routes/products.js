@@ -7,6 +7,7 @@ const productsController = require('../app/controllers/ProductsController');
 
 router.get('/combo/:slug',productsController.comboDetail);
 router.post('/drink/:slug/comments',productsController.postCommentCombo);
+router.post('/drink/:slug',productsController.postCart);
 router.get('/combo',productsController.combo);
 router.get('/pizza/:slug',productsController.pizzaDetail);
 router.post('/drink/:slug/comments',productsController.postCommentPizza);
@@ -25,6 +26,7 @@ router.post('/drink/:slug/comments',productsController.postCommentDrink);
 router.get('/drink',productsController.drink);
 //product + '/'
 router.get('/',productsController.index);
+
 
 
 module.exports = router;

@@ -143,8 +143,17 @@ class ProductsController{
         const comment = await ProductsService.postComment(req.user.id,req.user.name,req.body.productId, req.body.content);
         res.redirect('/product/drink/'+req.params.slug)
     }
+<<<<<<< HEAD
+=======
 
-    
-    
+    async postCart(req,res,next){
+        if(!req.user){
+            return res.redirect('/sign-in')
+        }
+        const cart = await ProductsService.addCart(req.user.id,req.body.productId,req.body.productName,req.body.image,req.body.price,req.body.quantity);
+        res.redirect('/product/drink/'+req.params.slug)
+    }
+
+>>>>>>> 7c443cf240a8732f275c3933a391015127beed20
 }
 module.exports = new ProductsController;

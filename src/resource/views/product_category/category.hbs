@@ -40,48 +40,114 @@
         <span>Best wishes for you</span>
         <h3>Enjoy your meal !</h3>
     </div>
+    <div id="productsWithPagination-id">
 
-    <div class="box-container">
-
-        {{#each item}}
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="/product/{{this.category}}/{{this.slug}}">
-             <div class="image">
-                <img src="{{this.image}}" alt="">
-            </div>
-            <div class="content">
-                <h3 style="min-height: 62px;">{{this.name}}</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <span> ({{this.in_stock}}) </span>
+        <div class="box-container">
+            {{#each item}}
+            <div class="box">
+                <a href="#" class="fas fa-heart"></a>
+                <a href="/product/{{this.category}}/{{this.slug}}">
+                <div class="image">
+                    <img src="{{this.image}}" alt="">
                 </div>
-                <div class="price">{{this.new_price}} <span>{{this.old_price}}</span></div>
-                <a href="/product/{{this.category}}/{{this.slug}}" class="btn">BUY NOW</a>
+                <div class="content">
+                    <h3 style="min-height: 62px;">{{this.name}}</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span> ({{this.in_stock}}) </span>
+                    </div>
+                    <div class="price">{{this.new_price}} <span>{{this.old_price}}</span></div>
+                    <a href="/product/{{this.category}}/{{this.slug}}" class="btn">BUY NOW</a>
+                </div>
+                </a>
             </div>
-            </a>
+            {{/each}}
+
         </div>
-        {{/each}}
 
-    </div>
-
-    <div class="center">
-        <div class="pagination">
-        {{#each totalPageArr}}
-            {{#if this.isCurrent}}
-                <a href="/product{{this.category}}?page={{this.value}}" class = "active">{{this.value}}</a>
-            {{else}}
-                <a href="/product{{this.category}}?page={{this.value}}">{{this.value}}</a>
-            {{/if}}
-        {{/each}} 
+        <div class="center">
+            <div id="pagination-id" class="pagination">
+            {{#each totalPageArr}}
+                {{#if this.isCurrent}}
+                <a class="active">
+                    <form method="get" action="/product/drink/{{detail.slug}}/comments">
+                        <input class="categoryInput" type="hidden" name="category" value="{{this.category}}" >
+                        <input class="pageInput" type="hidden" name="page" value="{{this.value}}" >
+                        <input class="submit-pagination-active" type="submit" value="{{this.value}}">
+                    </form>
+                </a>
+                {{else}}
+                    <a >
+                        <form method="get" action="/product/drink/{{detail.slug}}/comments">
+                            <input class="categoryInput" type="hidden" name="productId" value="{{this.category}}">
+                            <input class="pageInput" type="hidden" name="page" value="{{this.value}}" >
+                            <input class="submit-pagination" type="submit" value="{{this.value}}">
+                        </form>
+                    </a>
+                {{/if}}
+            {{/each}} 
+            </div>
         </div>
     </div>
 
 </section>
+
+<script id="category-template" type="text/x-handlebars">
+  <div class="box-container">
+            \{{#each item}}
+            <div class="box">
+                <a href="#" class="fas fa-heart"></a>
+                <a href="/product/\{{this.category}}/\{{this.slug}}">
+                <div class="image">
+                    <img src="\{{this.image}}" alt="">
+                </div>
+                <div class="content">
+                    <h3 style="min-height: 62px;">\{{this.name}}</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span> (\{{this.in_stock}}) </span>
+                    </div>
+                    <div class="price">\{{this.new_price}} <span>\{{this.old_price}}</span></div>
+                    <a href="/product/\{{this.category}}/\{{this.slug}}" class="btn">BUY NOW</a>
+                </div>
+                </a>
+            </div>
+            \{{/each}}
+
+    </div>
+
+        <div class="center">
+            <div id="pagination-id" class="pagination">
+            \{{#each totalPageArr}}
+                \{{#if this.isCurrent}}
+                <a class="active">
+                    <form method="get" action="/api/product/\{{this.category}}">
+                        <input class="categoryInput" type="hidden" name="category" value="\{{this.category}}" >
+                        <input class="pageInput" type="hidden" name="page" value="\{{this.value}}" >
+                        <input class="submit-pagination-active" type="submit" value="\{{this.value}}">
+                    </form>
+                </a>
+                \{{else}}
+                    <a >
+                        <form method="get" action="/product/drink/\{{detail.slug}}/comments">
+                            <input class="categoryInput" type="hidden" name="productId" value="\{{this.category}}">
+                            <input class="pageInput" type="hidden" name="page" value="\{{this.value}}" >
+                            <input class="submit-pagination" type="submit" value="\{{this.value}}">
+                        </form>
+                    </a>
+                \{{/if}}
+            \{{/each}} 
+            </div>
+        </div>
+</script>
 
 
 

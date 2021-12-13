@@ -10,15 +10,6 @@ app.use('/user',usersRouter);
 app.use('/api',apiRouter)
 app.use('/',sitesRouter);
 
-
-
-// app.get('/product', (req, res) => {
-//   res.render('product');
-// })
-
-
-
-
 }
 
 module.exports = route;
