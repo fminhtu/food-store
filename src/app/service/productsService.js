@@ -34,10 +34,11 @@ class ProductsService{
             } 
         return totalPageArr;    
     }
-    postComment(userId,productId,content){
+    postComment(userId,userName,productId,content){
         return new Comment(
             {
                 userId: userId,
+                userName:userName,
                 productId: productId,
                 content: content,
                 createAt: new Date()

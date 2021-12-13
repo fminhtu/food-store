@@ -1014,13 +1014,15 @@ span.psw {
 .center {
   text-align: center;
 }
+.comment{
+  padding: 0 20% 0 20%;
+}
 .form-comment{
   margin-top: 10px;
 }
 .comment-input{
   width: 100%;
   padding: 12px 20px;
-  margin: 10% 0 0 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -1029,7 +1031,7 @@ span.psw {
 .comment-btn{
   padding: .3rem .6rem;
   margin-top: -5%;
-  margin-left: 3%;
+  margin-left: 82%;
   font-size: 1rem;
   min-width: 3rem;
   text-align: center;
@@ -1038,5 +1040,34 @@ span.psw {
   text-decoration: none;
   background: #27ae60;
   border-radius: .5rem;
+}
+.comment-card{
+  padding:2% 0 1% 5%;
+}
+.commetn-info{
+  display:inline-flex;
+  width: 100%;
+}
+.cmt-name{
+  width: 100%;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #27ae60;
+}
+.cmt-date{
+  width:fit-content;
+  color:rgb(192, 192, 192);
+  text-align: center;
+  max-height: 1.2em;
+}
+.cmt-content{
+  padding-left: 8%;
+  font-size: 1.2em
+}
+.cmt-img{
+  width: 4em;
+  border-radius: 50%;
+  max-width: 15rem;
+  height: auto;
 }
 

@@ -48,12 +48,9 @@ class ProductsController{
             )
     }
 
-    comboDetail(req,res,next){
-        Menu.findOne({slug: req.params.slug})
-            .then(detail => res.render('product_category/detail',{ 
-                detail : ToObject(detail)
-            }))
-            .catch(next);
+    async comboDetail(req,res,next){
+        const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
+        res.render('product_category/detail',productWithComments);
     }
 
     pizza(req,res,next){
@@ -69,12 +66,9 @@ class ProductsController{
             )
     }
 
-    pizzaDetail(req,res,next){
-        Menu.findOne({slug: req.params.slug})
-            .then(detail => res.render('product_category/detail',{ 
-                detail : ToObject(detail)
-            }))
-            .catch(next);
+    async pizzaDetail(req,res,next){
+        const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
+        res.render('product_category/detail',productWithComments);
     }
 
     burger(req,res,next){
@@ -90,12 +84,9 @@ class ProductsController{
             )
     }
 
-    burgerDetail(req,res,next){
-        Menu.findOne({slug: req.params.slug})
-            .then(detail => res.render('product_category/detail',{ 
-                detail : ToObject(detail)
-            }))
-            .catch(next);
+    async burgerDetail(req,res,next){
+        const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
+        res.render('product_category/detail',productWithComments);
     }
 
     chicken(req,res,next){
@@ -111,12 +102,9 @@ class ProductsController{
             )
     }
 
-    chickenDetail(req,res,next){
-        Menu.findOne({slug: req.params.slug})
-            .then(detail => res.render('product_category/detail',{ 
-                detail : ToObject(detail)
-            }))
-            .catch(next);
+    async chickenDetail(req,res,next){
+        const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
+        res.render('product_category/detail',productWithComments);
     }
 
     dinner(req,res,next){
@@ -132,12 +120,9 @@ class ProductsController{
             )
     }
 
-    dinnerDetail(req,res,next){
-        Menu.findOne({slug: req.params.slug})
-            .then(detail => res.render('product_category/detail',{ 
-                detail : ToObject(detail)
-            }))
-            .catch(next);
+    async dinnerDetail(req,res,next){
+        const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
+        res.render('product_category/detail',productWithComments);
     }
 
     drink(req,res,next){
@@ -158,13 +143,58 @@ class ProductsController{
         res.render('product_category/detail',productWithComments);
     }
 
-    async postComment(req,res,next){
+
+    async postCommentCombo(req,res,next){
         if(!req.user){
             return res.redirect('/sign-in')
         }
-        const comment = await ProductsService.postComment(req.user.id,req.body.productId, req.body.content);
+        const comment = await ProductsService.postComment(req.user.id,req.user.name,req.body.productId, req.body.content);
+        res.redirect('/product/combo/'+req.params.slug)
+    }
+
+    async postCommentBurger(req,res,next){
+        if(!req.user){
+            return res.redirect('/sign-in')
+        }
+        const comment = await ProductsService.postComment(req.user.id,req.user.name,req.body.productId, req.body.content);
+        res.redirect('/product/burger/'+req.params.slug)
+    }
+
+    async postCommentChicken(req,res,next){
+        if(!req.user){
+            return res.redirect('/sign-in')
+        }
+        const comment = await ProductsService.postComment(req.user.id,req.user.name,req.body.productId, req.body.content);
+        res.redirect('/product/chicken/'+req.params.slug)
+    }
+
+
+    async postCommentPizza(req,res,next){
+        if(!req.user){
+            return res.redirect('/sign-in')
+        }
+        const comment = await ProductsService.postComment(req.user.id,req.user.name,req.body.productId, req.body.content);
+        res.redirect('/product/pizza/'+req.params.slug)
+    }
+
+
+    async postCommentDinner(req,res,next){
+        if(!req.user){
+            return res.redirect('/sign-in')
+        }
+        const comment = await ProductsService.postComment(req.user.id,req.user.name,req.body.productId, req.body.content);
+        res.redirect('/product/side-dishes/'+req.params.slug)
+    }
+
+    async postCommentDrink(req,res,next){
+        if(!req.user){
+            return res.redirect('/sign-in')
+        }
+        const comment = await ProductsService.postComment(req.user.id,req.user.name,req.body.productId, req.body.content);
         res.redirect('/product/drink/'+req.params.slug)
     }
+
+    
     
 }
 module.exports = new ProductsController;
