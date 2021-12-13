@@ -168,7 +168,7 @@ section {
   background: #fff;
   overflow-y: scroll;
   padding-bottom: 8rem;
-  display: none; }
+}
   .shopping-cart-container.active {
     display: block; }
   .shopping-cart-container::-webkit-scrollbar {
@@ -1071,3 +1071,13 @@ span.psw {
   height: auto;
 }
 
+.btn-cart {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .7rem 1.8rem;
+  font-size: 1.7rem;
+  cursor: pointer;
+  color: #fff !important;
+  background: #27ae60;
+  border-radius: .5rem; 
+}

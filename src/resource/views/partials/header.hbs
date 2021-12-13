@@ -18,7 +18,11 @@
         <div id="menu-btn" class="fas fa-bars"></div>
         </a>
         <div id="search-btn" class="fas fa-search"></div>
-        <div id="cart-btn" class="fas fa-shopping-cart"></div>
+        <a href="/cart">
+                <div id="cart-btn" class="fas fa-shopping-cart">
+        </div>
+        </a>
+
 
         <div class="dropdown"> 
             <div id="login-btn" class="fas fa-user"></div>
@@ -61,126 +65,3 @@
 
 </section>
 
-<section class="shopping-cart-container">
-
-    <div class="products-container">
-
-        <h3 class="title">your products</h3>
-
-        <div class="box-container">
-
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="image/menu-1.png" alt="">
-                <div class="content">
-                    <h3>delicious food</h3>
-                    <span> quantity : </span>
-                    <input type="number" name="" value="1" id="">
-                    <br>
-                    <span> price : </span>
-                    <span class="price"> $40.00 </span>
-                </div>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="image/menu-2.png" alt="">
-                <div class="content">
-                    <h3>delicious food</h3>
-                    <span> quantity : </span>
-                    <input type="number" name="" value="1" id="">
-                    <br>
-                    <span> price : </span>
-                    <span class="price"> $40.00 </span>
-                </div>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="image/menu-3.png" alt="">
-                <div class="content">
-                    <h3>delicious food</h3>
-                    <span> quantity : </span>
-                    <input type="number" name="" value="1" id="">
-                    <br>
-                    <span> price : </span>
-                    <span class="price"> $40.00 </span>
-                </div>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="image/menu-4.png" alt="">
-                <div class="content">
-                    <h3>delicious food</h3>
-                    <span> quantity : </span>
-                    <input type="number" name="" value="1" id="">
-                    <br>
-                    <span> price : </span>
-                    <span class="price"> $40.00 </span>
-                </div>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="image/menu-5.png" alt="">
-                <div class="content">
-                    <h3>delicious food</h3>
-                    <span> quantity : </span>
-                    <input type="number" name="" value="1" id="">
-                    <br>
-                    <span> price : </span>
-                    <span class="price"> $40.00 </span>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="cart-total">
-
-        <h3 class="title"> cart total </h3>
-
-        <div class="box">
-            <h3 class="subtotal"> subtotal : <span>$200</span> </h3>
-            <h3 class="total"> total : <span>$200</span> </h3>
-            {{#if user}}
-            <a onclick="document.getElementById('sign-in').style.display='block'" style="width:auto;" class="btn">proceed to checkout</a>
-            {{else}}
-            <a href="/sign-in" class="btn">proceed to checkout</a>
-            {{/if}}
-        </div>
-
-    </div>
-
-</section>
-
-<div id="sign-in" class="modal form">
-  
-  <form class="modal-content animate" action="" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('sign-in').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
-    </div>
-
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input class="textpass" type="text" placeholder="Enter Username" name="uname" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input input class="textpass" type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button class="form_btn" type="submit">Confirm your order</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-    <div style="margin-left: 2rem;font-size:1.5rem;margin-bottom:2rem">
-        <p>forget password? <a href="#">click here</a></p>
-        <span onclick="document.getElementById('sign-in').style.display='none';document.getElementById('sign-up').style.display='block'">
-            <p>don't have an account? <a style="color:#27ae60;cursor: pointer;">create one</a></p>
-        </span>
-    </div>
-  </form>
-</div>

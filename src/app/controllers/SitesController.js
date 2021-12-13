@@ -1,6 +1,6 @@
 const Menu = require('../models/Menu');
 const userService = require('../service/userService');
-
+const ProductsService = require('../service/productsService')
 function isEmpty(obj) {
     for(var prop in obj) {
         if(obj.hasOwnProperty(prop))
@@ -14,6 +14,15 @@ class SitesController{
     //get//new
     home(req,res, next){
         res.render('home', {user: req.user});    
+    }
+
+    async cart(req,res,next){   
+        if(!req.user){
+            return res.redirect('/sign-in')
+        }
+        const cart = await ProductsService.getCart(req.user.id)
+        const totalPrice = await ProductsService.totalPrice(cart);
+        res.render('cart',{cart,totalPrice});
     }
     
 

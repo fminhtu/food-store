@@ -8,15 +8,6 @@ app.use('/product',productsRouter);
 app.use('/user',usersRouter);
 app.use('/',sitesRouter);
 
-
-
-// app.get('/product', (req, res) => {
-//   res.render('product');
-// })
-
-
-
-
 }
 
 module.exports = route;

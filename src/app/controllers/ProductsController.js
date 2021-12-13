@@ -194,7 +194,13 @@ class ProductsController{
         res.redirect('/product/drink/'+req.params.slug)
     }
 
-    
-    
+    async postCart(req,res,next){
+        if(!req.user){
+            return res.redirect('/sign-in')
+        }
+        const cart = await ProductsService.addCart(req.user.id,req.body.productId,req.body.productName,req.body.image,req.body.price,req.body.quantity);
+        res.redirect('/product/drink/'+req.params.slug)
+    }
+
 }
 module.exports = new ProductsController;
