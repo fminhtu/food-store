@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="/css/app.css">
+<header class="header">
+
+    <a href="#" class="logo"> <i class="fas fa-utensils"></i> food </a>
+    
+    <nav class="navbar">
+        <a href="/home">home</a>
+        <a href="/product">product</a>
+
+        <a href="/create">popular</a>
+        <a href="#menu">menu</a>
+        <a href="#order">about</a>
+        <a href="#">blogs</a>
+    </nav>
+
+    <div class="icons">
+        <a href="">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        </a>
+        <div id="search-btn" class="fas fa-search"></div>
+        <a href="/cart">
+                <div id="cart-btn" class="fas fa-shopping-cart">
+        </div>
+        </a>
+
+
+        <div class="dropdown"> 
+            <div id="login-btn" class="fas fa-user"></div>
+            <div class="dropdown-content">
+                
+                
+                    {{#if user}}
+                    <a href="/user/account">
+                        <p class="btn-drop" >My profile</p>
+                    </a>
+                    
+                    <a href="/product">
+                        <p class="btn-drop" >function</p>
+                    </a>   
+
+                    <a href="/logout">
+                        <p class="btn-drop" >Log out</p>
+                    </a>
+                    {{else}}
+                    <a href="/sign-in">
+                        <p  class="btn-drop">Log in</p>
+                    </a>
+                    {{/if}}
+                    
+                
+            </div>
+
+        </div>
+    </div>
+    
+</header>
+
+
+<section class="search-form-container">
+
+    <form action="/product" method="get" >
+        <input type="search" name = "search" placeholder="search here..." id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+
+</section>
+
