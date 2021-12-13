@@ -1,4 +1,3 @@
-const { ToArrObject } = require('../../util/mongoose');
 const Comment = require('../models/Comment');
 const Menu = require('../models/Menu');
 
@@ -16,7 +15,7 @@ class ProductsService{
         else{
             end = start + perPage;
         }
-        return ToArrObject(items).slice(start,end);
+        return items.slice(start,end);
     }
     paginationArray(pageRequest,numItem,slug){
         if(numItem<=perPage){
@@ -49,6 +48,13 @@ class ProductsService{
         const detail = await Menu.findOne({slug:slug}).lean();
         const comments = await Comment.find({productId:detail.id}).lean();
         return {detail,comments};
+    }
+    async getProductsWithPagination(category,pageRequest){
+        const count = await Menu.count({category:category});
+        const products = await Menu.find({category:category}).lean();
+        const item = this.viewItem(pageRequest,count,products);
+        const totalPageArr = this.paginationArray(pageRequest,count,"/"+category);
+        return {item,totalPageArr};
     }
 }
 
