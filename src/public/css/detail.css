@@ -148,6 +148,8 @@ img{
 }
 .purchase-info .btn:last-of-type{
     background: #f64749;
+    width: 120px;
+    height: 40px;
 }
 .purchase-info .btn:hover{
     opacity: 0.9;
