@@ -10,7 +10,26 @@ class ProductsController{
 
     //get//product
     index(req,res,next){
-        if(req.query.search) {
+        
+        if(req.query.filter){
+            // console.log(req.query)
+            if (req.query.filter == "asc-price") {
+                Menu.find({category: "drink"}).sort({ new_price: 1 }).lean()
+                    .then(item => res.render('product_category/category', {
+                        item: item
+                    }))
+                    .catch(next);
+            }
+            else if (req.query.filter == "dsc-price") {
+                Menu.find({ category: "drink"}).sort({ new_price: -1 }).lean()
+                    .then(item => res.render('product_category/category', {
+                        item: item
+                    }))
+                    .catch(next);    
+            }
+           
+        }
+        else if(req.query.search) {
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');
             Menu.find({name: regex},{},{option: "i"}).lean()
                 .then(item => res.render('product_category/category',{
@@ -18,7 +37,7 @@ class ProductsController{
                 }))
                 .catch(next);
         }
-     else {
+        else {
         Promise.all([Menu.find({}).lean(),Menu.count({})])
         .then(([item,count])=>{
             let items = ProductsService.viewItem(req.query.page,count,item);

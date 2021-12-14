@@ -155,8 +155,12 @@ section {
       font-size: 3rem;
       cursor: pointer;
       color: #130f40; }
-      .search-form-container form label:hover {
-        color: #27ae60; }
+    .search-form-container form button {
+      font-size: 3rem;
+      cursor: pointer;
+      color: #130f40; }
+    .search-form-container form label:hover {
+      color: #27ae60; }
 
 .shopping-cart-container {
   position: fixed;
@@ -842,6 +846,32 @@ table,th,td{
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropbtn {
+  background-color: #606a70;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  
+}
+
+.dropdown-content a:hover {background-color: #ddd}
+
+.show {display:block;}
+
+#filter-dropdown {
+  left: 1450px;
+  bottom: 20px;
 }
 
 .form {font-family: Arial, Helvetica, sans-serif;}
