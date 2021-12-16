@@ -42,14 +42,39 @@
 
     </div>
 
-    <div id="filter-dropdown" class="dropdown">
-        <button class="dropbtn">filter</button>
-        <div id="myDropdown" class="dropdown-content">
-            <a href="?filter=asc-price">ascending price</a>
-            <a href="?filter=dsc-price">descending price</a>
+    <div id="filter" class="dropdown">
+        <form action="/product" method="get">
+            <label for="category"> Category: </label>
+            
+            <select name="category">
+                <option value="drink">drink</option>
+                <option value="combo">combo</option>
+                <option value="pizza">pizza</option>
+                <option value="burger">burger</option>
+                <option value="drink">chicken</option>
+                <option value="side-dishes">side dishes</option>
+            </select>
+
+            <label> | </label>
+            
+            <label for="type"> Type: </label>
+            <select name="type">
+                <option value="price"> Price </option>
+                <option value="rating"> Rating </option>
+            </select>
+            
+            <label> | </label>
+
+            <label for="order"> Order: </label>
+            <select name="order">
+                <option value="asc"> Ascending </option>
+                <option value="dsc"> Descending </option>
+            </select>
+            
+            
+            <button class="filter-button"> filter </button>
+        </form>
         
-        </div>
-    
     </div>
 
 
