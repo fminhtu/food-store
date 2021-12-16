@@ -12,16 +12,32 @@ class ProductsController{
     index(req,res,next){
         
         if (req.query.order && req.query.category && req.query.type){
-            console.log(req.query)
-            if (req.query.order== "asc") {
-                Menu.find({ category: [req.query.category]}).sort({ new_price: 1, price: 1 }).lean()
+            // console.log(req.query);
+            let type;
+            
+            if (req.query.order == "asc") {
+                if (req.query.type === "price") {
+                    type = { new_price: 1, price: 1 }
+                }
+                else if (req.query.type === "rating") {
+                    type = { num_rating: 1, rating: 1}
+                }
+
+                Menu.find({ category: [req.query.category]}).sort( type ).lean()
                     .then(item => res.render('product_category/category', {
                         item: item
                     }))
                     .catch(next);
             }
-            else if (req.query.order == "dsc") {
-                Menu.find({ category: [req.query.category] }).sort({ new_price: -1, price: -1 }).lean()
+            else if (req.query.order == "dsc") {            
+                if (req.query.type === "price") {
+                    type = { new_price: -1, price: -1 }
+                }
+                else if (req.query.type === "rating") {
+                    type = { num_rating: -1, rating: -1 }
+                }
+
+                Menu.find({ category: [req.query.category] }).sort( type ).lean()
                     .then(item => res.render('product_category/category', {
                         item: item
                     }))
