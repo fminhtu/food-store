@@ -1137,4 +1137,9 @@ span.psw {
   border-radius: .5rem; 
 
 }
+.filter{
+  margin-left: 32%;
+  padding-bottom: 3em;
+  width: 50%;
+}
 

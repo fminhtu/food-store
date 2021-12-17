@@ -46,7 +46,7 @@ $('#comment-form input[type=submit]').on('click',function(event){
     });  
 });
 
-$(document).on('click','#productsWithPagination-id #pagination-id a form',function(event){
+$(document).on('click','#productsWithPagination-id #pagination-id a #form-submit',function(event){
     event.preventDefault();
     const category = $(this).find('input.categoryInput').val();
     console.log(category,"asas");

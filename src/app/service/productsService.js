@@ -35,6 +35,24 @@ class ProductsService{
             } 
         return totalPageArr;    
     }
+    paginationArrayFilter(pageRequest,numItem,slug,type,order){
+        if(numItem<=perPage){
+            return null;
+        }
+        let page = parseInt(pageRequest)||1;
+        let totalPage = Math.floor(numItem/perPage) + 1;
+        let totalPageArr = [];
+            for (let i=1;i<=totalPage;i++){
+                totalPageArr.push({
+                    value : i,
+                    isCurrent: page === i,
+                    category:slug,
+                    type:type,
+                    order:order
+                });
+            } 
+        return totalPageArr;    
+    }
     postComment(userId,userName,productId,content){
         return new Comment(
             {
