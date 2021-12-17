@@ -42,7 +42,7 @@
 
     </div>
 
-    <div id="filter" class="dropdown">
+    <div id="filter" class="filter">
         <form action="/product" method="get">
             <label for="category"> Category: </label>
             
@@ -71,8 +71,7 @@
                 <option value="dsc"> Descending </option>
             </select>
             
-            
-            <button class="filter-button"> filter </button>
+            <button class="btn"> filter </button>
         </form>
         
     </div>
@@ -107,12 +106,14 @@
 
         </div>
 
+
+
         <div class="center">
             <div id="pagination-id" class="pagination">
             {{#each totalPageArr}}
                 {{#if this.isCurrent}}
                 <a class="active">
-                    <form method="get" action="/product/drink/{{detail.slug}}/comments">
+                    <form id="form-submit" method="get" action="/product/drink/{{detail.slug}}/comments">
                         <input class="categoryInput" type="hidden" name="category" value="{{this.category}}" >
                         <input class="pageInput" type="hidden" name="page" value="{{this.value}}" >
                         <input class="submit-pagination-active" type="submit" value="{{this.value}}">
@@ -120,19 +121,67 @@
                 </a>
                 {{else}}
                     <a >
-                        <form method="get" action="/product/drink/{{detail.slug}}/comments">
+                        <form id="form-submit" method="get" action="/product/drink/{{detail.slug}}/comments">
                             <input class="categoryInput" type="hidden" name="productId" value="{{this.category}}">
                             <input class="pageInput" type="hidden" name="page" value="{{this.value}}" >
                             <input class="submit-pagination" type="submit" value="{{this.value}}">
                         </form>
                     </a>
                 {{/if}}
-            {{/each}} 
+            {{/each}}
+
+            {{#each totalPageArrNotAjax}}
+                {{#if this.isCurrent}}
+                <a class="active">
+                    <form method="get" action="/product">
+                        <input type="hidden" name="search" value="{{this.category}}" >
+                        <input type="hidden" name="page" value="{{this.value}}" >
+                        <input class="submit-pagination-active" type="submit" value="{{this.value}}">
+                    </form>
+                </a>
+                {{else}}
+                    <a >
+                        <form method="get" action="/product">
+                            <input type="hidden" name="search" value="{{this.category}}" >
+                            <input type="hidden" name="page" value="{{this.value}}" >
+                            <input class="submit-pagination" type="submit" value="{{this.value}}">
+                        </form>
+                    </a>
+                {{/if}}
+            {{/each}}
+
+            {{#each totalPageArrFilter}}
+                {{#if this.isCurrent}}
+                <a class="active">
+                    <form method="get" action="/product">
+                        <input type="hidden" name="category" value="{{this.category}}" >
+                        <input type="hidden" name="type" value="{{this.type}}" >
+                        <input type="hidden" name="order" value="{{this.order}}" >
+                        <input type="hidden" name="page" value="{{this.value}}" >
+                        <input class="submit-pagination-active" type="submit" value="{{this.value}}">
+                    </form>
+                </a>
+                {{else}}
+                    <a >
+                        <form method="get" action="/product">
+                            <input type="hidden" name="category" value="{{this.category}}" >
+                            <input type="hidden" name="type" value="{{this.type}}" >
+                            <input type="hidden" name="order" value="{{this.order}}" >
+                            <input type="hidden" name="page" value="{{this.value}}" >
+                            <input class="submit-pagination" type="submit" value="{{this.value}}">
+                        </form>
+                    </a>
+                {{/if}}
+            {{/each}}
+
+            
             </div>
         </div>
     </div>
 
 </section>
+
+
 
 <script id="category-template" type="text/x-handlebars">
   <div class="box-container">
@@ -167,7 +216,7 @@
             \{{#each totalPageArr}}
                 \{{#if this.isCurrent}}
                 <a class="active">
-                    <form method="get" action="/api/product/\{{this.category}}">
+                    <form id="form-submit" method="get" action="/api/product/\{{this.category}}">
                         <input class="categoryInput" type="hidden" name="category" value="\{{this.category}}" >
                         <input class="pageInput" type="hidden" name="page" value="\{{this.value}}" >
                         <input class="submit-pagination-active" type="submit" value="\{{this.value}}">
@@ -175,7 +224,7 @@
                 </a>
                 \{{else}}
                     <a >
-                        <form method="get" action="/product/drink/\{{detail.slug}}/comments">
+                        <form id="form-submit" method="get" action="/product/drink/\{{detail.slug}}/comments">
                             <input class="categoryInput" type="hidden" name="productId" value="\{{this.category}}">
                             <input class="pageInput" type="hidden" name="page" value="\{{this.value}}" >
                             <input class="submit-pagination" type="submit" value="\{{this.value}}">
