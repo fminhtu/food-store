@@ -88,6 +88,10 @@ class ProductsService{
     async removeItem(userId,productId){
         return await Cart.deleteOne({userId: userId, productId: productId})
     }
+    
+    async updateQuantity(userId,productId,quantity){
+        return await Cart.updateOne({userId: userId, productId:productId},{quantity:quantity});
+    }
 }
 
 module.exports = new ProductsService;

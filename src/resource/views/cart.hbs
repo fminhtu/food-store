@@ -9,7 +9,6 @@
             <div class="box">
                   <form action="" method="post">
                       <input type="hidden" name = "productId" value={{this.productId}}>
-                      <input type="hidden" name = "userId" value={{this.userId}}>
                       <button type="submit" class="fas fa-times">
                       <i class=""></i>
                       </button>
@@ -18,7 +17,14 @@
                 <div class="content">
                     <h3>{{this.productName}}</h3>
                     <span> quantity : </span>
-                    <input type="number" name="" value={{this.quantity}} id="">
+                    <form action="" method="post" >
+                    <input type="hidden" name = "product" value={{this.productId}}>
+                    <input type="hidden" value={{this.productName}} name = "name">
+                    <input type="number"  min="1" name = "quantity" value={{this.quantity}} class="quantity">
+                    <button type="submit" class="btn">
+                      <i class="">Submit</i>
+                      </button>
+                    </form>
                     <br>
                     <span> price : </span>
                     <span class="price"> {{this.price}} </span>

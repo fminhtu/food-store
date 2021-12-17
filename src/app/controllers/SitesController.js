@@ -26,9 +26,11 @@ class SitesController{
     }
 
     async postCart(req,res,next){
-        const {userId,productId} = req.body;
-        console.log(productId);
-        const removeItem = await ProductsService.removeItem(userId,productId);
+        const {productId,name,product,quantity} = req.body;
+        console.log(name)
+        console.log(product);
+        const updateQuantity = await ProductsService.updateQuantity(req.user.id,product,quantity);
+        const removeItem = await ProductsService.removeItem(req.user.id,productId);
         res.redirect('cart')
     }
     
