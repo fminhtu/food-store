@@ -3,11 +3,17 @@
     <div class="products-container">
 
         <h3 class="title">your products</h3>
-
         <div class="box-container">
-           {{#each cart}}
+            {{#if cart}}
+            {{#each cart}}
             <div class="box">
-                <i class="fas fa-times"></i>
+                  <form action="" method="post">
+                      <input type="hidden" name = "productId" value={{this.productId}}>
+                      <input type="hidden" name = "userId" value={{this.userId}}>
+                      <button type="submit" class="fas fa-times">
+                      <i class=""></i>
+                      </button>
+                  </form>
                 <img src={{this.image}} alt="">
                 <div class="content">
                     <h3>{{this.productName}}</h3>
@@ -19,10 +25,11 @@
                 </div>
             </div>
             {{/each}}
+            {{else}}
+            <h1>Empty</h1>
+           {{/if}}
         </div>
-
-    </div>
-
+      </div>
     <div class="cart-total">
 
         <h3 class="title"> cart total </h3>

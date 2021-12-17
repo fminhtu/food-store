@@ -3,6 +3,7 @@ const router = express.Router();
 
 const sitesController = require('../app/controllers/SitesController');
 const passport = require('../config/passport');
+const loggedInGuard = require("../guard/loggedInGuard");
 
 
 router.get('/sign-in',sitesController.login);
@@ -18,6 +19,7 @@ router.get('/home',sitesController.home);
 router.get('/create',sitesController.create);
 router.post('/store',sitesController.store);
 router.get('/cart',sitesController.cart);
+router.post('/cart',loggedInGuard,sitesController.postCart);
 router.get('/',sitesController.home);
 
 

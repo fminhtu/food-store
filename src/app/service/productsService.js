@@ -84,6 +84,10 @@ class ProductsService{
         const totalPageArr = this.paginationArray(pageRequest,count,"/"+category);
         return {item,totalPageArr};
     }
+
+    async removeItem(userId,productId){
+        return await Cart.deleteOne({userId: userId, productId: productId})
+    }
 }
 
 module.exports = new ProductsService;

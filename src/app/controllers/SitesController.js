@@ -24,6 +24,13 @@ class SitesController{
         const totalPrice = await ProductsService.totalPrice(cart);
         res.render('cart',{cart,totalPrice});
     }
+
+    async postCart(req,res,next){
+        const {userId,productId} = req.body;
+        console.log(productId);
+        const removeItem = await ProductsService.removeItem(userId,productId);
+        res.redirect('cart')
+    }
     
 
     //get; sign in
