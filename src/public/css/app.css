@@ -856,16 +856,14 @@ table,th,td{
 }
 
 .dropbtn {
-  background-color: #606a70;
   color: white;
   padding: 10px;
   font-size: 16px;
   border: none;
   cursor: pointer;
-  
 }
 
-.dropdown-content a:hover {background-color: #ddd}
+.dropdown-content a:hover {background-color: #ffffff}
 
 .show {display:block;}
 

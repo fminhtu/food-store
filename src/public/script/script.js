@@ -31,6 +31,7 @@ window.onscroll = () =>{
 
 $('#comment-form input[type=submit]').on('click',function(event){
     event.preventDefault();
+    
     $.post(`/api/products/${$('#product-id').val()}/comments`,{
         content: $('#content-id').val(),
     },function(data){
@@ -48,9 +49,13 @@ $('#comment-form input[type=submit]').on('click',function(event){
 
 $(document).on('click','#productsWithPagination-id #pagination-id a #form-submit',function(event){
     event.preventDefault();
-    const category = $(this).find('input.categoryInput').val();
-    console.log(category,"asas");
-    $.get(`/api/products/${$(this).find('input.categoryInput').val()}`,{
+    
+    let category = $(this).find('input.categoryInput').val();
+    if (category==="/"){
+        category="/all";
+    }
+
+    $.get(`/api/products${category}`,{
         page: $(this).find('input.pageInput').val(),
     },function(data){
         const commentTemplate = Handlebars.compile(

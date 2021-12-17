@@ -96,6 +96,13 @@ class ProductsService{
     }
 
     async getProductsWithPagination(category,pageRequest){
+        if (category==="all"){
+            const count = await Menu.count({});
+            const products = await Menu.find({}).lean();
+            const item = this.viewItem(pageRequest,count,products);
+            const totalPageArr = this.paginationArray(pageRequest,count,"");
+            return {item,totalPageArr};
+        }
         const count = await Menu.count({category:category});
         const products = await Menu.find({category:category}).lean();
         const item = this.viewItem(pageRequest,count,products);
