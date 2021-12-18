@@ -1,0 +1,58 @@
+    <div class="heading">
+        <span>Best wishes for you</span>
+        <h3>Enjoy your meal !</h3>
+
+    </div>
+<div class="row-pay">
+  <div class="col-75-pay">
+    <div class="container-pay">
+      <form action="/action_page.php">
+        <div class="row-pay">
+          <div class="col-50-pay">
+            <h3>Billing Address</h3>
+            {{#if user}}
+            <label for="fname"><i class="pay fa fa-user"></i> Full Name</label>
+            <input type="text" class = "pay" id="fname" name="name" value = {{user.name}}>
+            <label for="email"><i class="pay fa fa-envelope"></i> Email</label>
+            <input type="text"class = "pay" id="email" name="email" value = {{user.email}}>
+            <label for="adr"><i class="pay fa fa-address-card-o"></i> Phone number</label>
+            <input type="text" class = "pay"id="adr" name="address" value = {{user.phoneNumber}}>
+            <label for="adr"><i class="pay fa fa-address-card-o"></i> Address</label>
+            <input type="text" class = "pay"id="adr" name="address">
+            <label for="city"><i class="pay fa fa-institution"></i> City</label>
+            <input type="text" class = "pay" id="city" name="city">
+            {{!-- <div class="row-pay">
+              <div class="col-50-pay">
+                <label for="state">State</label>
+                <input type="text" class = "pay" id="state" name="state" placeholder="NY">
+              </div>
+              <div class="col-50-pay">
+                <label for="zip">Zip</label>
+                <input type="text" class = "pay" id="zip" name="zip" placeholder="10001">
+              </div>
+            </div> --}}
+                        {{/if}}
+          </div>
+
+         
+        </div>
+        <label>
+          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+        </label>
+        <input type="submit" value="Continue to checkout" class="btn-pay">
+      </form>
+    </div>
+  </div>
+  <div class="col-25-pay">
+    <div class="container-pay">
+ 
+      <h4>Cart <span class="price" style="color:black">
+          <i class="fa fa-shopping-cart"></i> <b></b></span></h4>
+            {{#each cart}}
+      <p><a href="#">{{this.productName}}</a> <span class="price">{{this.price}} x {{this.quantity}} </span></p>
+            {{/each}}
+      <hr>
+      <p>Total <span class="price" style="color:black"><b>{{totalPrice}}</b></span></p>
+    </div>
+  </div>
+</div>

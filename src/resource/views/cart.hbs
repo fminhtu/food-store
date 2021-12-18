@@ -44,7 +44,9 @@
             <h3 class="subtotal"> subtotal : <span>{{totalPrice}}</span> </h3>
             <h3 class="total"> total : <span>{{totalPrice}}</span> </h3>
             {{#if user}}
-            <a onclick="document.getElementById('sign-in').style.display='block'" style="width:auto;" class="btn">proceed to checkout</a>
+            {{!-- <a onclick="document.getElementById('sign-in').style.display='block'" style="width:auto;" class="btn">proceed to checkout</a> --}}
+                        <a href="/pay" class="btn">proceed to checkout</a>
+
             {{else}}
             <a href="/sign-in" class="btn">proceed to checkout</a>
             {{/if}}
@@ -54,7 +56,7 @@
 
 </section>
 
-<div id="sign-in" class="modal form">
+{{!-- <div id="sign-in" class="modal form">
   
   <form class="modal-content animate" action="" method="post">
     <div class="imgcontainer">
@@ -81,4 +83,4 @@
         </span>
     </div>
   </form>
-</div>
+</div> --}}

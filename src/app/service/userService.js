@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const randomstring = require("randomstring");
 
 exports.findByUsername = (username) => {
     return User.findOne({
@@ -47,6 +48,9 @@ exports.register = async (name,username,password,email,phoneNumber,dateOfBirth,r
         dateOfBirth: dateOfBirth,
         phoneNumber: phoneNumber,
         image: "https://play-lh.googleusercontent.com/9lWRV--bbBVqN79jCoi7vBbXGirjbFe2RSDaZMfMmPp48s9zeMAb7oICWHmLVEyNCQ=s180-rw",
-        role: role
+        role: role,
+        status: "unactivated",
+        activationString: randomstring.generate(),
+        ban:"false"
     });
 }

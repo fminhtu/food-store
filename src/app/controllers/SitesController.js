@@ -27,8 +27,6 @@ class SitesController{
 
     async postCart(req,res,next){
         const {productId,name,product,quantity} = req.body;
-        console.log(name)
-        console.log(product);
         const updateQuantity = await ProductsService.updateQuantity(req.user.id,product,quantity);
         const removeItem = await ProductsService.removeItem(req.user.id,productId);
         res.redirect('cart')
@@ -39,6 +37,12 @@ class SitesController{
     login(req,res){
         const error = req.flash('error');
         res.render('sign-in',{error});
+    }
+
+    async pay(req,res){
+        const cart = await ProductsService.getCart(req.user.id)
+        const totalPrice = await ProductsService.totalPrice(cart);
+        res.render('pay',{user: req.user,cart: cart, totalPrice: totalPrice});
     }
 
     logout(req,res){

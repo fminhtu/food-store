@@ -11,10 +11,10 @@ const User = new Schema({
     dateOfBirth: {type: Date},
     image: {type:String},
     role: {type:String},
+    status: {type:String},
+    activationString: {type:String},
     ban: {type:Boolean}
 });
 
 
-// creatAt: { type:Date, default:Date.now },
-    // updateAt: { type:Date, default:Date.now }
 module.exports = mongoose.model('users', User);
