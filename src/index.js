@@ -3,6 +3,7 @@ db.connect();
 
 const session = require("express-session");
 const path = require('path')
+const flash = require('express-flash');
 const express = require('express')
 const handlebars = require('express-handlebars');
 const passport = require('passport');
@@ -20,7 +21,7 @@ const route = require("./routes/index");
 
 //static file
 app.use(express.static(path.join(__dirname,'public')))
-
+app.use(flash());
 app.use(session({ secret: "catsddd" }));
 app.use(passport.initialize());
 app.use(passport.session());

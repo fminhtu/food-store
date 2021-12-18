@@ -10,7 +10,8 @@ const User = new Schema({
     phoneNumber: {type: String},
     dateOfBirth: {type: Date},
     image: {type:String},
-    role: {type:String}
+    role: {type:String},
+    ban: {type:Boolean}
 });
 
 

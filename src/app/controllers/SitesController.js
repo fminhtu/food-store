@@ -37,8 +37,8 @@ class SitesController{
 
     //get; sign in
     login(req,res){
-        const wrongPass = req.query['wrong-password'] !== undefined;
-        res.render('sign-in',{wrongPass});
+        const error = req.flash('error');
+        res.render('sign-in',{error});
     }
 
     logout(req,res){
