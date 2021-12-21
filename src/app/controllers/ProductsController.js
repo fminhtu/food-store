@@ -76,7 +76,7 @@ class ProductsController{
 
     //get : product/category
     async combo(req,res,next){
-        const productsWithPagination = await ProductsService.getProductsWithPagination("combo",req.params.slug);
+        const productsWithPagination = await ProductsService.getProductsWithPagination("combo",req.params.page);
         res.render('product_category/category',productsWithPagination);
     }
 
@@ -86,7 +86,7 @@ class ProductsController{
     }
 
     async pizza(req,res,next){
-        const productsWithPagination = await ProductsService.getProductsWithPagination("pizza",req.params.slug);
+        const productsWithPagination = await ProductsService.getProductsWithPagination("pizza",req.params.page);
         res.render('product_category/category',productsWithPagination);
     }
 
@@ -96,7 +96,7 @@ class ProductsController{
     }
 
     async burger(req,res,next){
-        const productsWithPagination = await ProductsService.getProductsWithPagination("burger",req.params.slug);
+        const productsWithPagination = await ProductsService.getProductsWithPagination("burger",req.params.page);
         res.render('product_category/category',productsWithPagination);
     }
 
@@ -106,7 +106,7 @@ class ProductsController{
     }
 
     async chicken(req,res,next){
-        const productsWithPagination = await ProductsService.getProductsWithPagination("chicken",req.params.slug);
+        const productsWithPagination = await ProductsService.getProductsWithPagination("chicken",req.params.page);
         res.render('product_category/category',productsWithPagination);
     }
 
@@ -116,7 +116,7 @@ class ProductsController{
     }
 
     async dinner(req,res,next){
-        const productsWithPagination = await ProductsService.getProductsWithPagination("side-dishes",req.params.slug);
+        const productsWithPagination = await ProductsService.getProductsWithPagination("side-dishes",req.params.page);
         res.render('product_category/category',productsWithPagination);
     }
 
@@ -126,15 +126,14 @@ class ProductsController{
     }
 
     async drink(req,res,next){
-        const productsWithPagination = await ProductsService.getProductsWithPagination("drink",req.params.slug);
+        const productsWithPagination = await ProductsService.getProductsWithPagination("drink",req.params.page);
         res.render('product_category/category',productsWithPagination);
     }
 
     async drinkDetail(req,res,next){
-        const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
+        const productWithComments = await ProductsService.getProductCmtPage(req.params.slug,req.params.page);
         res.render('product_category/detail',productWithComments);
     }
-
 
     async postCommentCombo(req,res,next){
         if(!req.user){

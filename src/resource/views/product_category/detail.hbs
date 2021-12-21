@@ -66,32 +66,64 @@
         </div>
       </div>
 </div>
+
 <div class="comment">
-  <form clsss="form-comment" id="comment-form" method="post" action="/product/drink/{{detail.slug}}/comments">
+  <form class="form-comment" id="comment-form" method="post" action="/product/drink/{{detail.slug}}/comments">
     <input type="hidden" name="productId" value="{{detail.id}}" id="product-id">
     <input class="comment-input" type="text" name="content" placeholder="Your comment" id="content-id">
     <input class="comment-btn" type="submit" value="Comment">
   </form>
-  <div id="comments">
-    <ul id="comment-list">
-      {{#each comments}}
-      <div class="comment-card">
-          <div class="commetn-info">
-            <img class="cmt-img" src="https://www.w3schools.com/howto/img_avatar2.png" alt="">
-            <div style="padding-left:1.2em;">
-              <p class ="cmt-name">{{userName}}</p>
-              <p class ="cmt-date">{{creatAt}}</p>
+
+  <div id="paginationCMT">
+    <div id="comments">
+      <ul id="comment-list">
+        {{#each comments}}
+        <div class="comment-card">
+            <div class="commetn-info">
+              <img class="cmt-img" src="https://www.w3schools.com/howto/img_avatar2.png" alt="">
+              <div style="padding-left:1.2em;">
+                <p class ="cmt-name">{{userName}}</p>
+                <p class ="cmt-date">{{creatAt}}</p>
+              </div>
+              
             </div>
-            
-          </div>
-          <div class="comment-content">
-            <p class ="cmt-content">{{content}}</p>
-          </div>
+            <div class="comment-content">
+              <p class ="cmt-content">{{content}}</p>
+            </div>
+        </div>
+        {{/each}}
+      </ul>
+
+      <div class="center">
+        <div id="paginationCmt-id" class="pagination">
+          {{#each totalPageCmtArr}}
+              {{#if this.isCurrent}}
+              <a class="active">
+                  <form class="pageCmt" method="get" action="">
+                      <input class="pageInput" type="hidden" name="page" value="{{this.value}}" >
+                      <input class="productSlug" type="hidden" name="id" value="{{this.slug}}">
+                      <input class="submit-pagination-active" type="submit" value="{{this.value}}">
+                  </form>
+              </a>
+              {{else}}
+                  <a> 
+                    <form class="pageCmt" method="get" action="">                  
+                        <input class="pageInput" type="hidden" name="page" value="{{this.value}}">
+                        <input class="productSlug" type="hidden" name="id" value="{{this.slug}}">
+                        <input class="submit-pagination" type="submit" value="{{this.value}}">
+                    </form>
+                  </a>
+              {{/if}}
+          {{/each}} 
+        </div>
       </div>
-      {{/each}}
-    </ul>
+  </div>
+
   </div>
 </div>
+
+
+
 <script id="comment-template" type="text/x-handlebars">
   <div class="comment-card">
     <div class="commetn-info">
@@ -105,5 +137,50 @@
       <p class ="cmt-content">\{{content}}</p>
     </div>
   </div>
+</script>
+
+<script id="comment-template-page" type="text/x-handlebars">
+    <div id="comments">
+      <ul id="comment-list">
+        \{{#each comments}}
+        <div class="comment-card">
+            <div class="commetn-info">
+              <img class="cmt-img" src="https://www.w3schools.com/howto/img_avatar2.png" alt="">
+              <div style="padding-left:1.2em;">
+                <p class ="cmt-name">\{{userName}}</p>
+                <p class ="cmt-date">\{{creatAt}}</p>
+              </div>
+              
+            </div>
+            <div class="comment-content">
+              <p class ="cmt-content">\{{content}}</p>
+            </div>
+        </div>
+        \{{/each}}
+      </ul>
+
+      <div class="center">
+        <div id="paginationCmt-id" class="pagination">
+          \{{#each totalPageCmtArr}}
+              \{{#if this.isCurrent}}
+              <a class="active">
+                  <form class="pageCmt" method="get" action="">
+                      <input class="pageInput" type="hidden" name="page" value="\{{this.value}}" >
+                      <input class="productSlug" type="hidden" name="id" value="\{{this.slug}}">
+                      <input class="submit-pagination-active" type="submit" value="\{{this.value}}">
+                  </form>
+              </a>
+              \{{else}}
+                  <a> 
+                    <form class="pageCmt" method="get" action="">                  
+                        <input class="pageInput" type="hidden" name="page" value="\{{this.value}}">
+                        <input class="productSlug" type="hidden" name="id" value="\{{this.slug}}">
+                        <input class="submit-pagination" type="submit" value="\{{this.value}}">
+                    </form>
+                  </a>
+              \{{/if}}
+          \{{/each}} 
+        </div>
+      </div>
 </script>
 

@@ -14,9 +14,18 @@ exports.postComment = async (req,res)=>{
     const comment = await productService.postComment(userId,userName,productId,content);
     res.status(200).json(comment);
 };
+
 exports.getPagination = async (req,res)=>{
     const { category } = req.params;
     const { page } = req.query;
     const productsWithPagination = await productService.getProductsWithPagination(category,page);
     res.status(200).json(productsWithPagination);
+};
+
+exports.getPaginationCmt = async (req,res)=>{
+    const { page } = req.query;
+    const { slug } = req.query;
+    console.log(page,slug);
+    const cmtPagination = await productService.getProductCmtPage(slug,page);
+    res.status(200).json(cmtPagination);
 };

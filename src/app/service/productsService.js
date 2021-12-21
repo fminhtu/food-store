@@ -4,10 +4,10 @@ const Cart = require('../models/Cart');
 
 
 const perPage = 12;
+
 class ProductsService{
     viewItem(pageRequest,numItem,items){
-        let page = parseInt(pageRequest)||1;
-            
+        let page = parseInt(pageRequest)||1;   
         let totalPage = Math.floor(numItem/perPage) + 1;
         let start = (page-1)*perPage;
         let end;
@@ -64,9 +64,64 @@ class ProductsService{
             }
         ).save();
     }
-    async getProductWithComment(slug){
+    async getProductCmtPage(slug,pageRequest){
         const detail = await Menu.findOne({slug:slug}).lean();
-        const comments = await Comment.find({productId:detail.id}).lean();
+        const numComment = await Comment.count({productId:detail.id});
+
+        let page = parseInt(pageRequest)||1;   
+        let totalPage = Math.floor(numComment/perPage) + 1;
+        let start = (page-1)*perPage;
+        let end;
+        if (page==totalPage){
+            end = numComment;
+        }
+        else{
+            end = start + perPage;
+        }
+        let totalPageCmtArr = [];
+        if(numComment<=perPage){
+            totalPageCmtArr = null;
+        }else{
+            for (let i=1;i<=totalPage;i++){
+                totalPageCmtArr.push({
+                    value : i,
+                    isCurrent: page === i,
+                    slug: slug
+                });
+            } 
+        }
+        const comments = (await Comment.find({productId:detail.id}).sort({creatAt: 'descending'}).lean()).slice(start,end);
+
+        return {detail,comments,totalPageCmtArr};
+    }
+
+    async getProductWithComment(slug,pageRequest){
+        const detail = await Menu.findOne({slug:slug}).lean();
+        const numComment = await Comment.count({});
+        let page = parseInt(pageRequest)||1;   
+        let totalPage = Math.floor(numComment/perPage) + 1;
+        let start = (page-1)*perPage;
+        let end;
+        if (page==totalPage){
+            end = numComment;
+        }
+        else{
+            end = start + perPage;
+        }
+
+        let totalPageArr = [];
+        if(numComment<=perPage){
+            totalPageArr = null;
+        }else{
+            for (let i=1;i<=totalPage;i++){
+                totalPageArr.push({
+                    value : i,
+                    isCurrent: page === i
+                });
+            } 
+        }
+        const comments = await Comment.find({productId:detail.id}).sort({creatAt: 'descending'}).lean();
+
         return {detail,comments};
     }
 

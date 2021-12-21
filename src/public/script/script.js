@@ -47,6 +47,27 @@ $('#comment-form input[type=submit]').on('click',function(event){
     });  
 });
 
+
+
+
+$(document).on('click','#paginationCmt-id a .pageCmt',function(event){
+    event.preventDefault();
+    let page = $(this).find('input.pageInput').val();
+    let slug = $(this).find('input.productSlug').val();
+    console.log(slug);
+    $.get(`/api/products/detail/pagination`,{
+        page: page,
+        slug: slug,
+    },function(data){
+        console.log(data);
+        const commentTemplate = Handlebars.compile(
+        document.getElementById("comment-template-page").innerHTML);
+        const commentHtml = commentTemplate(data);
+        $('#paginationCMT').html(commentHtml);
+    })  
+});
+
+
 $(document).on('click','#productsWithPagination-id #pagination-id a #form-submit',function(event){
     event.preventDefault();
     
