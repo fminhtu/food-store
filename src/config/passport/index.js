@@ -13,7 +13,10 @@ passport.use(new LocalStrategy(
         return done(null,false,{message: "Incorrect password"});
     }
     if(user.ban === true){
-      return done(null,false,{message:"Banned"});
+      return done(null,false,{message:"This account has been banned."});
+    }
+    if(user.status === "unactivated"){
+      return done(null,false,{message:"You must activate your account. Check your mail!"});
     }
     return done(null,user);
 },

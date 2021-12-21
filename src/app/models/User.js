@@ -13,7 +13,9 @@ const User = new Schema({
     role: {type:String},
     status: {type:String},
     activationString: {type:String},
-    ban: {type:Boolean}
+    ban: {type:Boolean},
+    status: {type:String},
+    activationSting: {type:String}
 });
 
 
