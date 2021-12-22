@@ -89,3 +89,45 @@ exports.activate = async(email, activationString) =>{
     return true;
 };
 
+exports.resetPass = async(email)=>{
+    const user = await User.findOne({email}).lean();
+    if(!user) return false;
+    const option = {
+        from: process.env.SENDERUSERNAME,
+        to: email,
+        subject: "RESET PASSWORD",
+        html: `<h1>Have an issue with your account?</h1>
+            <p>Wanna reset your password?
+            <a href="${process.env.DOMAIN_NAME}/user/change-pass?email=${user.email}"> Click here </a>
+            </p>
+        `
+    }
+    nodemailer.transporter.sendMail(option,function(err,info){
+        if(err){
+            console.log(err);
+            return;
+        }
+        console.log("Sent " + info);
+    });
+}
+
+exports.checkPassword = async(password, confirm) =>{
+    if(password === confirm) return true;
+    return false;
+};
+
+exports.reset = async(email,password) => {
+    const pwdHashed = await bcrypt.hash(password,10);
+    const user = await User.findOne({email}).lean();
+    if(!user){
+        return false;
+    }
+    await User.updateOne({
+        email
+    },{
+        $set: {
+            password: pwdHashed
+        }
+    });
+    return true;
+}

@@ -8,6 +8,10 @@ const loggedInGuard = require("../guard/loggedInGuard");
 
 router.get('/account',loggedInGuard,usersController.viewAccount);
 router.get('/activate',usersController.activate);
+router.get('/change-pass',usersController.changePassword);
+router.post('/change-pass',usersController.resetPassword);
+
+
 
 
 

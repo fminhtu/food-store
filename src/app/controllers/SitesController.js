@@ -17,6 +17,17 @@ class SitesController{
         res.render('home', {user: req.user});    
     }
 
+    forgetPassword(req,res, next){
+        res.render('forgetpassword');    
+    }
+
+    async resetPassword(req,res,next){
+        const {email} = req.body;
+        const result = await userService.resetPass(email);
+        if(result === false) return res.render('forgetpassword',{message: "Can't find your account. Try another one."})
+        return res.redirect('/sign-in');
+    }
+
     async cart(req,res,next){   
         if(!req.user){
             return res.redirect('/sign-in')

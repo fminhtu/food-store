@@ -16,5 +16,23 @@ class UsersController{
             })
         }
     }
+
+    changePassword(req,res,next){
+        res.render("UserAccount/changepass")
+    }
+
+    async resetPassword(req,res,next){
+        const {email} = req.query;
+        const {password, confirmPassword} = req.body;
+        if(password !== confirmPassword){
+            return res.render("UserAccount/changepass",{message : true});
+        }
+        const result = await userService.reset(email,confirmPassword);
+        return res.redirect('/sign-in')
+    }
+    
+
+
+
 }
 module.exports = new UsersController;
