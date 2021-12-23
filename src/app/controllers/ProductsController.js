@@ -191,7 +191,7 @@ class ProductsController{
         cart = await ProductsService.addCart(req.user.id,req.body.productId,req.body.productName,req.body.image,req.body.price,req.body.quantity);
         else
         cart = await ProductsService.addCart(req.session.unAuthID,req.body.productId,req.body.productName,req.body.image,req.body.price,req.body.quantity);
-        res.redirect('/product/drink/'+req.params.slug)
+        res.redirect(`/product/${req.body.category}/`+req.params.slug)
     }
 
 }
