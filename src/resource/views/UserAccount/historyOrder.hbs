@@ -1,0 +1,57 @@
+<section class="shopping-cart-container">
+
+    <div class="products-container">
+
+        <h3 class="title">your products</h3>
+        <div class="box-container">
+            {{#if cart}}
+            {{#each cart}}
+            <div class="box">
+                  <form action="" method="post">
+                      <input type="hidden" name = "productId" value={{this.productId}}>
+                      <button type="submit" class="fas fa-times">
+                      <i class=""></i>
+                      </button>
+                  </form>
+                <img src={{this.image}} alt="">
+                <div class="content">
+                    <h3>{{this.productName}}</h3>
+                    <span> quantity : </span>
+                    <form action="" method="post" >
+                    <input type="hidden" name = "product" value={{this.productId}}>
+                    <input type="hidden" value={{this.productName}} name = "name">
+                    <input type="number"  min="1" name = "quantity" value={{this.quantity}} class="quantity">
+                    <button type="submit" class="btn">
+                      <i class="">Submit</i>
+                      </button>
+                    </form>
+                    <br>
+                    <span> price : </span>
+                    <span class="price"> {{this.price}} </span>
+                </div>
+            </div>
+            {{/each}}
+            {{else}}
+            <h1>Empty</h1>
+           {{/if}}
+        </div>
+      </div>
+    <div class="cart-total">
+
+        <h3 class="title"> cart total </h3>
+
+        <div class="box">
+            <h3 class="subtotal"> subtotal : <span>{{totalPrice}}</span> </h3>
+            <h3 class="total"> total : <span>{{totalPrice}}</span> </h3>
+            {{#if user}}
+            {{!-- <a onclick="document.getElementById('sign-in').style.display='block'" style="width:auto;" class="btn">proceed to checkout</a> --}}
+                        <a href="/pay" class="btn">proceed to checkout</a>
+
+            {{else}}
+            <a href="/sign-in" class="btn">proceed to checkout</a>
+            {{/if}}
+        </div>
+
+    </div>
+
+</section>

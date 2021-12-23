@@ -188,7 +188,7 @@ class ProductsController{
     async postCart(req,res,next){
         var cart;
         if(req.user)
-        cart = await ProductsService.addCart(req.user.id,req.body.productId,req.body.productName,req.body.image,req.body.price,req.body.quantity);
+        cart = await ProductsService.addCart(req.user.username,req.body.productId,req.body.productName,req.body.image,req.body.price,req.body.quantity);
         else
         cart = await ProductsService.addCart(req.session.unAuthID,req.body.productId,req.body.productName,req.body.image,req.body.price,req.body.quantity);
         res.redirect(`/product/${req.body.category}/`+req.params.slug)

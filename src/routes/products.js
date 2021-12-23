@@ -19,7 +19,6 @@ router.post('/drink/:slug/comments',productsController.postCommentBurger);
 router.get('/burger',productsController.burger);
 router.get('/chicken/:slug',productsController.chickenDetail);
 router.post('/burger/:slug',productsController.postCart);
-router.post('/drink/:slug/comments',productsController.postCommentChicken);
 router.get('/chicken',productsController.chicken);
 router.post('/chicken/:slug',productsController.postCart);
 router.get('/side-dishes/:slug',productsController.dinnerDetail);

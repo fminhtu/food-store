@@ -31,6 +31,9 @@ class UsersController{
         return res.redirect('/sign-in')
     }
     
+    historyOrder(req,res,next){
+        res.render("UserAccount/historyOrder");
+    }
 
 
 
