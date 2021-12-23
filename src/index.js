@@ -8,6 +8,7 @@ const flash = require('express-flash');
 const express = require('express')
 const handlebars = require('express-handlebars');
 const passport = require('passport');
+const userIDMiddlewares = require('./middlewares/userIdMiddlewares');
 const app = express();
 
 
@@ -43,6 +44,7 @@ app.engine('.hbs',
 app.set('view engine', '.hbs');
 
 app.set('views', path.join(__dirname,'resource/views'));
+app.use(userIDMiddlewares);
 
 route(app);
 
