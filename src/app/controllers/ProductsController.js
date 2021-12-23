@@ -81,7 +81,7 @@ class ProductsController{
     }
 
     async comboDetail(req,res,next){
-        const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
+        const productWithComments = await ProductsService.getProductCmtPage(req.params.slug,req.params.page);
         res.render('product_category/detail',productWithComments);
     }
 
@@ -91,7 +91,7 @@ class ProductsController{
     }
 
     async pizzaDetail(req,res,next){
-        const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
+        const productWithComments = await ProductsService.getProductCmtPage(req.params.slug,req.params.page);
         res.render('product_category/detail',productWithComments);
     }
 
@@ -101,7 +101,7 @@ class ProductsController{
     }
 
     async burgerDetail(req,res,next){
-        const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
+        const productWithComments = await ProductsService.getProductCmtPage(req.params.slug,req.params.page);
         res.render('product_category/detail',productWithComments);
     }
 
@@ -111,7 +111,7 @@ class ProductsController{
     }
 
     async chickenDetail(req,res,next){
-        const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
+        const productWithComments = await ProductsService.getProductCmtPage(req.params.slug,req.params.page);
         res.render('product_category/detail',productWithComments);
     }
 
@@ -121,7 +121,7 @@ class ProductsController{
     }
 
     async dinnerDetail(req,res,next){
-        const productWithComments = await ProductsService.getProductWithComment(req.params.slug);
+        const productWithComments = await ProductsService.getProductCmtPage(req.params.slug,req.params.page);
         res.render('product_category/detail',productWithComments);
     }
 

@@ -25,7 +25,6 @@ exports.getPagination = async (req,res)=>{
 exports.getPaginationCmt = async (req,res)=>{
     const { page } = req.query;
     const { slug } = req.query;
-    console.log(page,slug);
     const cmtPagination = await productService.getProductCmtPage(slug,page);
     res.status(200).json(cmtPagination);
 };
