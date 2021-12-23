@@ -186,10 +186,11 @@ class ProductsController{
     }
 
     async postCart(req,res,next){
-        if(!req.user){
-            return res.redirect('/sign-in')
-        }
-        const cart = await ProductsService.addCart(req.user.id,req.body.productId,req.body.productName,req.body.image,req.body.price,req.body.quantity);
+        var cart;
+        if(req.user)
+        cart = await ProductsService.addCart(req.user.id,req.body.productId,req.body.productName,req.body.image,req.body.price,req.body.quantity);
+        else
+        cart = await ProductsService.addCart(req.session.unAuthID,req.body.productId,req.body.productName,req.body.image,req.body.price,req.body.quantity);
         res.redirect('/product/drink/'+req.params.slug)
     }
 

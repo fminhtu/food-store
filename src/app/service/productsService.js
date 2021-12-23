@@ -125,10 +125,10 @@ class ProductsService{
         return {detail,comments};
     }
 
-    addCart(userId, productId,productName,image, price,quantity){
+    addCart(username, productId,productName,image, price,quantity){
         return new Cart(
             {
-                userId: userId,
+                username: username,
                 productId: productId,
                 productName: productName,
                 image: image,
@@ -138,9 +138,20 @@ class ProductsService{
         ).save();
     }
 
-    async getCart(userId){
-        return await Cart.find({userId: userId}).lean();
+    async getCart(username){
+        return await Cart.find({username: username}).lean();
     }
+
+    async unAuthToAuth(unAuthID,username){
+        await Cart.updateMany({
+            unAuthID
+        },{
+            $set: {
+                username: username
+            }
+        });
+}
+
 
     totalPrice(cart){
         let price = 0;
@@ -165,12 +176,12 @@ class ProductsService{
         return {item,totalPageArr};
     }
 
-    async removeItem(userId,productId){
-        return await Cart.deleteOne({userId: userId, productId: productId})
+    async removeItem(username,productId){
+        return await Cart.deleteOne({username: username, productId: productId})
     }
     
-    async updateQuantity(userId,productId,quantity){
-        return await Cart.updateOne({userId: userId, productId:productId},{quantity:quantity});
+    async updateQuantity(username,productId,quantity){
+        return await Cart.updateOne({username: username, productId:productId},{quantity:quantity});
     }
 }
 

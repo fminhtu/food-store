@@ -28,19 +28,32 @@ class SitesController{
         return res.redirect('/sign-in');
     }
 
-    async cart(req,res,next){   
-        if(!req.user){
-            return res.redirect('/sign-in')
+    async cart(req,res,next){
+        var cart;
+        var tempUsername = req.session.unAuthID;
+        if(req.user)   {
+        await ProductsService.unAuthToAuth(tempUsername, req.user.username);
+        cart = await ProductsService.getCart(req.user.username);
         }
-        const cart = await ProductsService.getCart(req.user.id)
+        else
+        cart = await ProductsService.getCart(tempUsername);
+
         const totalPrice = await ProductsService.totalPrice(cart);
         res.render('cart',{cart,totalPrice});
     }
 
     async postCart(req,res,next){
         const {productId,name,product,quantity} = req.body;
-        const updateQuantity = await ProductsService.updateQuantity(req.user.id,product,quantity);
-        const removeItem = await ProductsService.removeItem(req.user.id,productId);
+        var updateQuantity;
+        var removeItem;
+        if(req.user){
+        updateQuantity = await ProductsService.updateQuantity(req.user.username,product,quantity);
+        removeItem = await ProductsService.removeItem(req.user.username,productId);
+        }
+        else{
+            updateQuantity = await ProductsService.updateQuantity(req.session.unAuthID,product,quantity);
+            removeItem = await ProductsService.removeItem(req.session.unAuthID,productId);
+        }
         res.redirect('cart')
     }
     
