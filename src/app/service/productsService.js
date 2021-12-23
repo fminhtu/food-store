@@ -91,8 +91,9 @@ class ProductsService{
             } 
         }
         const comments = (await Comment.find({productId:detail.id}).sort({creatAt: 'descending'}).lean()).slice(start,end);
-
-        return {detail,comments,totalPageCmtArr};
+        
+        const realtiveProducts =(await Menu.find({category:detail.category}).lean()).slice(0,12);
+        return {detail,comments,totalPageCmtArr,realtiveProducts};
     }
 
     async getProductWithComment(slug,pageRequest){
