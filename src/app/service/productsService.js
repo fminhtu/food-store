@@ -126,17 +126,33 @@ class ProductsService{
         return {detail,comments};
     }
 
-    addCart(username, productId,productName,image, price,quantity){
-        return new Cart(
-            {
+    async addCart(username, productId,productName,image, price,quantity){
+        const user = await Cart.findOne({username}).lean();
+        if(user){
+            await Cart.updateOne(
+                { username: username}, 
+                { $push: { 
+                    items:{ productId: productId,
+                        productName: productName,
+                        image: image,
+                        price: price,
+                        quantity: quantity }
+                }},
+            );
+        }
+        else{
+            await Cart.create({
                 username: username,
-                productId: productId,
-                productName: productName,
-                image: image,
-                price: price,
-                quantity: quantity
-            }
-        ).save();
+                items: [{
+                    productId: productId,
+                    productName: productName,
+                    image: image,
+                    price: price,
+                    quantity: quantity
+                }
+                ]
+            });
+        }
     }
 
     async getCart(username){
@@ -144,7 +160,7 @@ class ProductsService{
     }
 
     async unAuthToAuth(unAuthID,username){
-        await Cart.updateMany({
+        await Cart.updateOne({
             unAuthID
         },{
             $set: {
@@ -178,11 +194,23 @@ class ProductsService{
     }
 
     async removeItem(username,productId){
-        return await Cart.deleteOne({username: username, productId: productId})
+        return await Cart.findOneAndUpdate({username: username},
+            { $pull: { items: { productId: productId } } },
+            { safe: true, multi: false }
+        );
     }
     
     async updateQuantity(username,productId,quantity){
-        return await Cart.updateOne({username: username, productId:productId},{quantity:quantity});
+        return await Cart.updateOne(
+            { username: username,
+            "items.productId": productId
+            },
+            {$set:
+            {
+                "items.$.quantity": quantity,
+            }
+            }
+            );
     }
 }
 

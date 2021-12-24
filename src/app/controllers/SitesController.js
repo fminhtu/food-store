@@ -2,6 +2,7 @@ const Menu = require('../models/Menu');
 const userService = require('../service/userService');
 const ProductsService = require('../service/productsService')
 const sendMail = require('../../config/nodemailer');
+const productsService = require('../service/productsService');
 function isEmpty(obj) {
     for(var prop in obj) {
         if(obj.hasOwnProperty(prop))
@@ -14,6 +15,8 @@ class SitesController{
 
     //get//new
     home(req,res, next){
+        if(req.user)
+        ProductsService.unAuthToAuth(req.session.unAuthID,req.user.username)
         res.render('home', {user: req.user});    
     }
 
@@ -29,17 +32,20 @@ class SitesController{
     }
 
     async cart(req,res,next){
-        var cart;
         var tempUsername = req.session.unAuthID;
+        var cart;
         if(req.user)   {
-        await ProductsService.unAuthToAuth(tempUsername, req.user.username);
         cart = await ProductsService.getCart(req.user.username);
         }
         else
         cart = await ProductsService.getCart(tempUsername);
-
-        const totalPrice = await ProductsService.totalPrice(cart);
-        res.render('cart',{cart,totalPrice});
+        if(cart[0]){
+            const totalPrice =  ProductsService.totalPrice(cart[0].items)
+            res.render('cart',{cart : cart[0].items,totalPrice})
+        }
+        else{
+            res.render('cart',{cart,totalPrice: 0})
+        }
     }
 
     async postCart(req,res,next){
@@ -61,13 +67,14 @@ class SitesController{
     //get; sign in
     login(req,res){
         const error = req.flash('error');
+        
         res.render('sign-in',{error});
     }
 
     async pay(req,res){
-        const cart = await ProductsService.getCart(req.user.id)
-        const totalPrice = await ProductsService.totalPrice(cart);
-        res.render('pay',{user: req.user,cart: cart, totalPrice: totalPrice});
+        const cart = await ProductsService.getCart(req.user.username)
+        const totalPrice = await ProductsService.totalPrice(cart[0].items);
+        res.render('pay',{user: req.user,cart: cart[0].items, totalPrice: totalPrice});
     }
 
     logout(req,res){
