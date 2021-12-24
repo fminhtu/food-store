@@ -5,7 +5,8 @@ db.connect();
 const session = require("express-session");
 const path = require('path')
 const flash = require('express-flash');
-const express = require('express')
+const express = require('express');
+const methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
 const passport = require('passport');
 const userIDMiddlewares = require('./middlewares/userIdMiddlewares');
@@ -24,6 +25,7 @@ const route = require("./routes/index");
 //static file
 app.use(express.static(path.join(__dirname,'public')))
 app.use(flash());
+app.use(methodOverride('_method'));
 app.use(session({ secret: "catsddd" }));
 app.use(passport.initialize());
 app.use(passport.session());

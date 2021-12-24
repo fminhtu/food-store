@@ -1,0 +1,19 @@
+
+
+<div class="function-form-container">
+
+    <form method="post" action="/user/storeUpdate?_method=PUT">
+        <h3>update Account</h3>
+        <label for="name">Name</label>
+        <input type="text" name="name" value="{{user.name}}" id="name" class="box">
+        <label for="phoneNumber">Phone number</label>
+        <input type="text" name="phoneNumber" value="{{user.phoneNumber}}" id="phoneNumber" class="box">
+        <label for="dateOfBirth">Date of birth</label>
+        <input type="date" name="dateOfBirth" value="2001-01-01" id="dateOfBirth" class="box">
+        <label for="image">Link Image</label>
+        <input type="text" name="image" value="{{user.image}}" id="image" class="box">
+        <button type="submit" class="btn">Update</button>
+    </form>
+
+</div>
+

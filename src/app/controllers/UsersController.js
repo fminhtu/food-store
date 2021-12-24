@@ -1,5 +1,6 @@
 const Menu = require('../models/Menu');
 const userService = require('../service/userService');
+const User = require('../models/User');
 
 class UsersController{
     viewAccount(req,res,next){
@@ -31,6 +32,30 @@ class UsersController{
         return res.redirect('/sign-in')
     }
     
+    updateAccount(req,res,next){
+        res.render("UserAccount/update");
+    }
+
+    async storeUpdate(req,res,next){
+        const username = req.session.passport.user.username;
+        let userInfo = await User.findOne({username:username}).lean();
+
+        userInfo.name = req.body.name;
+        req.session.passport.user.name = req.body.name;
+
+        userInfo.dateOfBirth = req.body.dateOfBirth;
+        req.session.passport.user.dateOfBirth = req.body.dateOfBirth;
+
+        userInfo.phoneNumber = req.body.phoneNumber;
+        req.session.passport.user.phoneNumber = req.body.phoneNumber;
+
+        userInfo.image = req.body.image;
+        req.session.passport.user.image = req.body.image;
+
+        User.updateOne({username:username},userInfo)
+            .then(()=>res.redirect('/user/account'))
+            .catch(next);
+    }
 
 
 
