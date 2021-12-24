@@ -56,6 +56,9 @@ class UsersController{
             .then(()=>res.redirect('/user/account'))
             .catch(next);
     }
+    historyOrder(req,res,next){
+        res.render("UserAccount/historyOrder");
+    }
 
 
 
