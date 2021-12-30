@@ -1,8 +1,10 @@
 const User = require('../models/User');
+const Cart = require('../models/Cart');
+const Order = require('../models/Order');
 const bcrypt = require('bcrypt');
 const randomstring = require("randomstring");
 const nodemailer = require('../../config/nodemailer')
-
+var mongoose = require('mongoose');
 exports.findByUsername = (username) => {
     return User.findOne({
         username: username
@@ -130,4 +132,30 @@ exports.reset = async(email,password) => {
         }
     });
     return true;
+}
+
+exports.pay = async(username,fullname, email, phoneNumber, address) => {
+    var today = new Date().getTime();
+    mongoose.model('cart').findOne({ username: username }, function(err, result) {
+
+        let swap = new (mongoose.model('order'))(result.toJSON()) //or result.toObject
+        /* you could set a new id
+        swap._id = mongoose.Types.ObjectId()
+        swap.isNew = true
+        */
+       swap.fullname = fullname;
+       swap.email = email;
+       swap.phoneNumber = phoneNumber;
+       swap.address = address;
+       swap.date = today;
+       swap.status = "Dang xu ly";
+        result.remove()
+        swap.save() 
+    })
+}
+
+exports.history = async(username) =>{
+    return Order.find({
+        username: username
+    }).lean();
 }

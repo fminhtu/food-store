@@ -23,6 +23,8 @@ router.post('/store',sitesController.store);
 router.get('/cart',sitesController.cart);
 router.post('/cart',sitesController.postCart);
 router.get('/pay',loggedInGuard,sitesController.pay);
+router.post('/pay',loggedInGuard,sitesController.postPay);
+
 router.get('/forget-password',sitesController.forgetPassword);
 router.post('/forget-password',sitesController.resetPassword);
 

@@ -72,9 +72,16 @@ class SitesController{
     }
 
     async pay(req,res){
-        const cart = await ProductsService.getCart(req.user.username)
+        const cart = await ProductsService.getCart(req.user.username);
         const totalPrice = await ProductsService.totalPrice(cart[0].items);
         res.render('pay',{user: req.user,cart: cart[0].items, totalPrice: totalPrice});
+    }
+
+
+    async postPay(req,res){
+        const {name,email,phoneNumber,address} = req.body;
+        await userService.pay(req.user.username,name,email,phoneNumber,address);
+        return res.redirect('/user/history-order');
     }
 
     logout(req,res){
