@@ -8,11 +8,14 @@ const loggedInGuard = require("../guard/loggedInGuard");
 
 router.get('/account',loggedInGuard,usersController.viewAccount);
 router.get('/activate',usersController.activate);
-router.get('/change-pass',usersController.changePassword);
-router.post('/change-pass',usersController.resetPassword);
+router.get('/forget-pass',usersController.forgetPassword);
+router.post('/forget-pass',usersController.resetPassword);
+router.get('/change-pass',loggedInGuard,usersController.changePassword);
+router.post('/change-pass',usersController.postChangePassword);
 router.get('/update-account',usersController.updateAccount);
-router.put('/storeUpdate',usersController.storeUpdate);
+router.post('/storeUpdate',usersController.storeUpdate);
 router.get('/history-order',loggedInGuard,usersController.historyOrder);
+
 
 
 

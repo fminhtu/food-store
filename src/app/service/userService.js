@@ -159,3 +159,12 @@ exports.history = async(username) =>{
         username: username
     }).lean();
 }
+
+exports.changePassword = async(username,oldpassword,password,confirmPassword) =>{
+    const user = await this.findByUsername(username);
+    const check = await this.validPassword(oldpassword,user);
+    if(check === false) return "Wrong old password."
+    if(password !== confirmPassword) return "Wrong confirm password."
+    await this.reset(user.email,confirmPassword);
+    return "Success"
+}

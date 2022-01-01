@@ -18,8 +18,8 @@ class UsersController{
         }
     }
 
-    changePassword(req,res,next){
-        res.render("UserAccount/changepass")
+    forgetPassword(req,res,next){
+        res.render("UserAccount/forgetPass",{user: req.user})
     }
 
     async resetPassword(req,res,next){
@@ -63,6 +63,17 @@ class UsersController{
     }
 
 
+    changePassword(req,res){
+        res.render("UserAccount/changePassword");
+    }
 
+    async postChangePassword(req,res){
+        const {oldpassword, password, confirmPassword} = req.body;
+        const result = await userService.changePassword(req.user.username,oldpassword,password,confirmPassword)
+        if(result !== "Success"){
+            return res.render("UserAccount/changePassword",{result});
+        }
+        return res.redirect("/user/account")
+    }
 }
 module.exports = new UsersController;
