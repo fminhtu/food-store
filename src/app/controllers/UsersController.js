@@ -56,6 +56,7 @@ class UsersController{
             .then(()=>res.redirect('/user/account'))
             .catch(next);
     }
+    
     async historyOrder(req,res,next){
         const order = await userService.history(req.user.username);
         console.log(order);

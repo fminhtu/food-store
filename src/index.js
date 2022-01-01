@@ -41,6 +41,11 @@ app.engine('.hbs',
     helpers: {
       standardDate: (a)=> a.toString().slice(0,10),
       sum: (a,b)=> a+b,
+      standardDateOfBirth: (a)=>{
+        let date = a.toString();
+        let position = date.search("T");
+        return date.slice(0,position);
+      }
     }
   }),
 );

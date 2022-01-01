@@ -13,7 +13,7 @@ router.post('/forget-pass',usersController.resetPassword);
 router.get('/change-pass',loggedInGuard,usersController.changePassword);
 router.post('/change-pass',usersController.postChangePassword);
 router.get('/update-account',usersController.updateAccount);
-router.post('/storeUpdate',usersController.storeUpdate);
+router.put('/storeUpdate',usersController.storeUpdate);
 router.get('/history-order',loggedInGuard,usersController.historyOrder);
 
 
