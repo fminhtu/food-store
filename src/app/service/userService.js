@@ -148,7 +148,7 @@ exports.pay = async(username,fullname, email, phoneNumber, address) => {
        swap.phoneNumber = phoneNumber;
        swap.address = address;
        swap.date = today;
-       swap.status = "Dang xu ly";
+       swap.status = false;
         result.remove()
         swap.save() 
     })

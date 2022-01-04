@@ -9,7 +9,7 @@ const Order = new Schema({
     phoneNumber: {type: String},
     address: {type: String},
     date: {type:Date},
-    status: {type: String},
+    status: {type:Boolean},
     items:[{
         productId: {type: Schema.Types.ObjectId},
         productName:{type:String},

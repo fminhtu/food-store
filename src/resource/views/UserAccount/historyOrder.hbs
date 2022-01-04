@@ -3,7 +3,11 @@
             {{#each order}}
     <div class="products-container">
             <h3 class="title">{{this.date}}</h3>
-
+            {{#if this.status}}
+                <p>Waiting for delivery</p>
+            {{else}}
+                <p>Have been delivered</p>
+            {{/if}}
             {{#each this.items}}
         <div class="box-container">
             <div class="box">
