@@ -91,8 +91,15 @@ class ProductsService{
             } 
         }
         const comments = (await Comment.find({productId:detail.id}).sort({creatAt: 'descending'}).lean()).slice(start,end);
+
         
-        const realtiveProducts =(await Menu.find({category:detail.category}).lean()).slice(0,12);
+        
+        let temp =(await Menu.find({category:detail.category}).lean());
+        let random = Math.floor(Math.random() * (temp.length-9));
+        if((temp.length-random)<12){
+            random = 0;
+        }
+        const realtiveProducts = temp.slice(random,random+12);
         return {detail,comments,totalPageCmtArr,realtiveProducts};
     }
 

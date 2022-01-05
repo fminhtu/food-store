@@ -836,12 +836,12 @@ table,th,td{
   display: none;
   position: absolute;
   background-color: #f9f9f9 !important;
-  min-width: 160px;
+  min-width: 180px;
   box-shadow: 4px 11px 16px 5px rgba(0, 0, 0, 0.2);
   padding: 5px 5px !important;
   z-index: 2000;
   height:fit-content !important;
-  left: -50px;
+  left: -60px;
 }
 
 .dropdown:hover .dropdown-content {
@@ -1415,4 +1415,27 @@ p.star{
   .a_carousel{
     padding: 6px 10px;
   }
+}
+.header_order{
+  display:flex; 
+  justify-content: space-between;
+  border-bottom: 0.1rem solid rgb(199, 198, 198);
+  cursor: pointer;
+}
+.order_status{
+  width: 20%;
+  text-align:center;
+  padding: 2em 1em 1em 1em;
+  
+}
+.order_date{
+  width: 40%;
+  text-align:center;
+  padding: 1em;
+  color:#4CAF50;
+  
+}
+.order{
+  display:flex; 
+  justify-content: space-around;
 }

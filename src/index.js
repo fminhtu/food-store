@@ -45,6 +45,11 @@ app.engine('.hbs',
         let date = a.toString();
         let position = date.search("T");
         return date.slice(0,position);
+      },
+      standardDateOrder: (a)=>{
+        let date = a.toString();
+        let position = date.search("G");
+        return date.slice(0,position-1);
       }
     }
   }),

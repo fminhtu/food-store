@@ -2,17 +2,19 @@
             {{#if order}}
             {{#each order}}
     <div class="products-container">
-            <h3 class="title">{{this.date}}</h3>
+            <a href="" class="header_order">
+                <h1 class="order_date">{{standardDateOrder this.date}}</h1>
             {{#if this.status}}
-                <p>Waiting for delivery</p>
+                <p class="order_status">Have been delivered</p>
             {{else}}
-                <p>Have been delivered</p>
+                <p class="order_status">Waiting for delivery</p>
             {{/if}}
+            </a>
             {{#each this.items}}
         <div class="box-container">
-            <div class="box">
+            <div class="box order">
                 <img src={{this.image}} alt="">
-                <div class="content">
+                <div class="content" style="width:60%;">
                     <h3>{{this.productName}}</h3>
                     <span> quantity : {{this.quantity}} </span>
                     <br>
