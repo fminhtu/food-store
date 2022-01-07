@@ -10,6 +10,7 @@ const Order = new Schema({
     address: {type: String},
     date: {type:Date},
     status: {type:Boolean},
+    orderId: {type: Number},
     items:[{
         productId: {type: Schema.Types.ObjectId},
         productName:{type:String},

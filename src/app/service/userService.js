@@ -136,6 +136,7 @@ exports.reset = async(email,password) => {
 
 exports.pay = async(username,fullname, email, phoneNumber, address) => {
     var today = new Date().getTime();
+    var item = await Order.findOne().sort('-orderId');
     mongoose.model('cart').findOne({ username: username }, function(err, result) {
 
         let swap = new (mongoose.model('order'))(result.toJSON()) //or result.toObject
@@ -143,6 +144,7 @@ exports.pay = async(username,fullname, email, phoneNumber, address) => {
         swap._id = mongoose.Types.ObjectId()
         swap.isNew = true
         */
+       swap.orderId = item.orderId + 1;
        swap.fullname = fullname;
        swap.email = email;
        swap.phoneNumber = phoneNumber;
