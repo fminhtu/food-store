@@ -1,5 +1,6 @@
 const Menu = require('../models/Menu');
 const userService = require('../service/userService');
+const productService = require('../service/productsService');
 const User = require('../models/User');
 
 class UsersController{
@@ -56,11 +57,20 @@ class UsersController{
             .then(()=>res.redirect('/user/account'))
             .catch(next);
     }
+
+    async orderDetail(req,res){
+        const order = await productService.findOrder(req.query.orderId);
+        res.render('UserAccount/orderDetail',{order});
+    }
     
     async historyOrder(req,res,next){
+        if(req.query.orderId){
+            res.redirect(`/user/order-detail?orderId=${req.query.orderId}`)
+        }
+        else{
         const order = await userService.history(req.user.username);
-        console.log(order);
         res.render("UserAccount/historyOrder",{order});
+        }
     }
 
 

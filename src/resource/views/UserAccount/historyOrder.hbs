@@ -2,7 +2,12 @@
             {{#if order}}
             {{#each order}}
     <div class="products-container">
-            <a href="" class="header_order">
+                {{!-- <form action="#" method="get">
+                <input type="hidden" name="orderId" value={{this.orderId}}>
+                <input type="submit" value="" id = "submitbutton">
+                <label for="submitbutton" class = "link-button"> Detail</label>
+            </form> --}}
+            <a href="/user/order-detail?orderId={{this.orderId}}" class="header_order">
                 <h1 class="order_date">{{standardDateOrder this.date}}</h1>
             {{#if this.status}}
                 <p class="order_status">Have been delivered</p>

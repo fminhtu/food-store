@@ -15,6 +15,9 @@ router.post('/change-pass',usersController.postChangePassword);
 router.get('/update-account',usersController.updateAccount);
 router.put('/storeUpdate',usersController.storeUpdate);
 router.get('/history-order',loggedInGuard,usersController.historyOrder);
+router.get('/order-detail',loggedInGuard,usersController.orderDetail);
+
+
 
 
 

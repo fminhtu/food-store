@@ -1,7 +1,7 @@
 const Comment = require('../models/Comment');
 const Menu = require('../models/Menu');
 const Cart = require('../models/Cart');
-
+const Order = require('../models/Order')
 
 const perPage = 12;
 
@@ -218,6 +218,10 @@ class ProductsService{
             }
             }
             );
+    }
+
+    async findOrder(orderId){
+        return await Order.findOne({orderId: orderId}).lean();
     }
 }
 

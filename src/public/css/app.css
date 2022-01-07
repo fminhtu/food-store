@@ -1435,7 +1435,12 @@ p.star{
   color:#4CAF50;
   
 }
-.order{
-  display:flex; 
-  justify-content: space-around;
+
+
+.link-button { 
+  background: none;
+  border: none;
+  color: #1a0dab;
+  text-decoration: underline;
+  cursor: pointer; 
 }
