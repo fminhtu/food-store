@@ -1,28 +1,28 @@
 <section class="shopping-cart-container">
-     <h3>{{order.fullname}}</h3>
-     <h3>{{order.email}}</h3>
-     <h3>{{order.phoneNumber}}</h3>
-     <h3>{{order.address}}</h3>
-     {{#if order.status}}
-     <h3>Delivered</h3>
-     {{else}}
-     <h3>Delivering</h3>
-     {{/if}}
-    <div class="products-container">
-<h3 class="title">your products</h3>
-        <div class="box-container">
-            {{#each order.items}}
-            <div class="box">
-                <img src={{this.image}} alt="">
-                <div class="content">
-                    <h3>{{this.productName}}</h3>
-                    <span> quantity : </span>
-                    <span> price : </span>
-                    <span class="price"> {{this.price}} </span>
+    <div class="products-container"> 
+        <h2 class="title"> Information Order </h2>
+        <div class="information"> Fullname: {{order.fullname}}</div>
+        <div class="information"> Email: {{order.email}}</div>
+        <div class="information"> Phone number: {{order.phoneNumber}}</div>
+        <div class="information"> Address: {{order.address}}</div>
+        <div class="information"> Status: {{order.status}} </div>
+    </div>
+    <div class="products-container">  
+        <h3 class="title">your products </h3>
+            <div class="box-container">
+                {{#each order.items}}
+                <div class="box">
+                    <img src={{this.image}} alt="">
+                    
+                    <div class="content">
+                        <h3>{{this.productName}}</h3>
+                        <span> quantity : </span>
+                        <span> price : </span>
+                        <span class="price"> {{this.price}} </span>
+                    </div>
                 </div>
+                {{/each}}
             </div>
-            {{/each}}
         </div>
-      </div>
-      </section>
-</div>
+    </div>
+</section>

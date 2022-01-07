@@ -188,6 +188,13 @@ section {
     color: #130f40;
     border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
     text-align: center; }
+  .shopping-cart-container .information {
+    font-size: 1.5rem;
+    padding: 1rem;
+    color: #130f40;
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
   .shopping-cart-container .products-container {
     border: 0.1rem solid rgba(0, 0, 0, 0.2);
     border-radius: .5rem;
@@ -1444,3 +1451,4 @@ p.star{
   text-decoration: underline;
   cursor: pointer; 
 }
+

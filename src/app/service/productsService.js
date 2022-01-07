@@ -221,7 +221,13 @@ class ProductsService{
     }
 
     async findOrder(orderId){
-        return await Order.findOne({orderId: orderId}).lean();
+        let userOrder = await Order.findOne({orderId: orderId}).lean();
+        if (userOrder.status === true) {
+            userOrder.status = "Delivery";
+        } else {
+            userOrder.status = "Processing";
+        }
+        return userOrder;
     }
 }
 
