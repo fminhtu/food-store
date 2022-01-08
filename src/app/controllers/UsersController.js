@@ -45,8 +45,8 @@ class UsersController{
         req.session.passport.user.name = req.body.name;
 
         userInfo.dateOfBirth = req.body.dateOfBirth;
-        req.session.passport.user.dateOfBirth = req.body.dateOfBirth;
-
+        req.session.passport.user.dateOfBirth = req.body.dateOfBirth+"T";
+        
         userInfo.phoneNumber = req.body.phoneNumber;
         req.session.passport.user.phoneNumber = req.body.phoneNumber;
 

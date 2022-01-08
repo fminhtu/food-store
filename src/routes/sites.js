@@ -18,8 +18,7 @@ router.get('/sign-up',sitesController.up);
 router.post('/sign-up',sitesController.submit);
 
 router.get('/home',sitesController.home);
-router.get('/create',sitesController.create);
-router.post('/store',sitesController.store);
+
 router.get('/cart',sitesController.cart);
 router.post('/cart',sitesController.postCart);
 router.get('/pay',loggedInGuard,sitesController.pay);

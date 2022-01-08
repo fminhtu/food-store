@@ -104,25 +104,7 @@ class SitesController{
         const user = await userService.register(name,username,password,email,phoneNumber,date,role);
         res.redirect("/sign-in");
         }
-    }
-    
-    //get : create
-    create(req,res,next){
-        res.render('create');
-    }
-
-    // //post : store
-    store(req,res,next){
-        const newItem = req.body;
-        newItem.slug = `food-${req.body.id}`;
-        newItem.rating = 0.0;
-        newItem.num_rating=0;
-        const menu = new Menu(newItem);
-        menu.save();
-        res.render('saved');
-    }
-    
-  
+    } 
 }
 
 function isEmpty(obj) {
