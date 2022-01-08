@@ -5,7 +5,11 @@
         <div class="information"> Email: {{order.email}}</div>
         <div class="information"> Phone number: {{order.phoneNumber}}</div>
         <div class="information"> Address: {{order.address}}</div>
-        <div class="information"> Status: {{order.status}} </div>
+        {{#if status}}
+        <div class="information"> Status: delivered </div>
+        {{else}}
+        <div class="information"> Status: Processing </div>
+        {{/if}}
     </div>
     <div class="products-container">  
         <h3 class="title">your products </h3>
@@ -16,7 +20,8 @@
                     
                     <div class="content">
                         <h3>{{this.productName}}</h3>
-                        <span> quantity : </span>
+                        <span> quantity : {{this.quantity}}</span>
+                        <br>
                         <span> price : </span>
                         <span class="price"> {{this.price}} </span>
                     </div>

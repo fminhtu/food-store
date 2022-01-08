@@ -222,11 +222,11 @@ class ProductsService{
 
     async findOrder(orderId){
         let userOrder = await Order.findOne({orderId: orderId}).lean();
-        if (userOrder.status === true) {
-            userOrder.status = "Delivery";
-        } else {
-            userOrder.status = "Processing";
-        }
+        // if (userOrder.status === true) {
+        //     userOrder.status = "Delivery";
+        // } else {
+        //     userOrder.status = "Processing";
+        // }
         return userOrder;
     }
 }

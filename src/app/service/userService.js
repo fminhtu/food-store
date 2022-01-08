@@ -7,7 +7,8 @@ const nodemailer = require('../../config/nodemailer')
 var mongoose = require('mongoose');
 exports.findByUsername = (username) => {
     return User.findOne({
-        username: username
+        username: username,
+        role: "Customer"
     }).lean();
 }
 
@@ -52,7 +53,7 @@ exports.register = async (name,username,password,email,phoneNumber,dateOfBirth,r
         dateOfBirth: dateOfBirth,
         phoneNumber: phoneNumber,
         image: "https://play-lh.googleusercontent.com/9lWRV--bbBVqN79jCoi7vBbXGirjbFe2RSDaZMfMmPp48s9zeMAb7oICWHmLVEyNCQ=s180-rw",
-        role: role,
+        role: "Customer",
         status: "unactivated",
         activationString: activationString,
         ban:"false"
@@ -137,13 +138,8 @@ exports.reset = async(email,password) => {
 exports.pay = async(username,fullname, email, phoneNumber, address) => {
     var today = new Date().getTime();
     var item = await Order.findOne().sort('-orderId');
-    mongoose.model('cart').findOne({ username: username }, function(err, result) {
-
+     mongoose.model('cart').findOne({ username: username }, function(err, result) {
         let swap = new (mongoose.model('order'))(result.toJSON()) //or result.toObject
-        /* you could set a new id
-        swap._id = mongoose.Types.ObjectId()
-        swap.isNew = true
-        */
        swap.orderId = item.orderId + 1;
        swap.fullname = fullname;
        swap.email = email;
@@ -154,6 +150,7 @@ exports.pay = async(username,fullname, email, phoneNumber, address) => {
         result.remove()
         swap.save() 
     })
+    return item.orderId + 1;
 }
 
 exports.history = async(username) =>{

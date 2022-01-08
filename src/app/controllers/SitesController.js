@@ -80,8 +80,8 @@ class SitesController{
 
     async postPay(req,res){
         const {name,email,phoneNumber,address} = req.body;
-        await userService.pay(req.user.username,name,email,phoneNumber,address);
-        return res.redirect('/user/history-order');
+        const id = await userService.pay(req.user.username,name,email,phoneNumber,address);
+        await res.redirect(`user/order-detail?orderId=${id}`);
     }
 
     logout(req,res){

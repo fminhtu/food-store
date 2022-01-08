@@ -60,14 +60,14 @@ class UsersController{
 
     async orderDetail(req,res){
         const order = await productService.findOrder(req.query.orderId);
-        res.render('UserAccount/orderDetail',{order});
+        await res.render('UserAccount/orderDetail',{order});
     }
     
     async historyOrder(req,res,next){
         if(req.query.orderId){
             res.redirect(`/user/order-detail?orderId=${req.query.orderId}`)
         }
-        else{
+        else {
         const order = await userService.history(req.user.username);
         res.render("UserAccount/historyOrder",{order});
         }
