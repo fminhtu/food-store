@@ -145,16 +145,26 @@ section {
     align-items: center;
     animation: fadeUp .4s linear; }
     .search-form-container form input {
-      height: 100%;
+      height: 70%;
       width: 100%;
       font-size: 1.7rem;
       color: #130f40;
       text-transform: none;
+      border: 1px solid rgb(16, 20, 17);
+      margin-left: 10px;
+      margin-right: 10px;
       padding-right: 1rem; }
     .search-form-container form label {
-      font-size: 3rem;
+      font-size: 2rem;
       cursor: pointer;
-      color: #130f40; }
+      color: #130f40;}
+    .search-form-container form select {
+      font-size: 1.5rem;
+      cursor: pointer;
+       border: 1px solid rgb(16, 20, 17);
+      margin-left: 10px;
+      margin-right: 10px;
+      color: #130f40;} 
     .search-form-container form button {
       font-size: 3rem;
       cursor: pointer;
@@ -1452,3 +1462,10 @@ p.star{
   cursor: pointer; 
 }
 
+.filter-select {
+      font-size: 1.5rem;
+      cursor: pointer;
+       border: 1px solid rgb(16, 20, 17);
+      margin-left: 10px;
+      margin-right: 10px;
+      color: #130f40;} 

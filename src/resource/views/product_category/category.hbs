@@ -47,7 +47,7 @@
         <form action="/product" method="get">
             <label for="category"> Category: </label>
             
-            <select name="category">
+            <select name="category" class ="filter-select">
                 <option value="combo">combo</option>
                 <option value="pizza">pizza</option>
                 <option value="drink">drink</option>
@@ -55,19 +55,15 @@
                 <option value="chicken">chicken</option>
                 <option value="side-dishes">side dishes</option>
             </select>
-
-            <label> | </label>
-            
+      
             <label for="type"> Type: </label>
-            <select name="type">
+            <select name="type" class ="filter-select">
                 <option value="price"> Price </option>
                 <option value="rating"> Rating </option>
-            </select>
-            
-            <label> | </label>
+            </select>        
 
-            <label for="order"> Order: </label>
-            <select name="order">
+            <label for="order" > Order: </label>
+            <select name="order" class ="filter-select">
                 <option value="asc"> Ascending </option>
                 <option value="dsc"> Descending </option>
             </select>

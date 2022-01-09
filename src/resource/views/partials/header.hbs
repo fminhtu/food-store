@@ -60,10 +60,35 @@
 
 
 <section class="search-form-container">
-
     <form action="/product" method="get" >
-        <input type="search" name = "search" placeholder="search here..." id="search-box">
-        <button for="search-box" class="fas fa-search"></label>
+        <label for="category"> Category </label>
+        <select name="category">
+            <option value="combo">combo</option>
+            <option value="pizza">pizza</option>
+            <option value="drink">drink</option>
+            <option value="burger">burger</option>
+            <option value="chicken">chicken</option>
+            <option value="side-dishes">side dishes</option>
+        </select>
+        
+        <label for="type"> Type </label>
+        <select name="type">
+            <option value="price"> Price </option>
+            <option value="rating"> Rating </option>
+        </select>
+        
+        
+        <label for="order"> Order </label>
+        <select name="order">
+            <option value="asc"> Ascending </option>
+            <option value="dsc"> Descending </option>
+        </select>
+        
+
+        <label for="order"> Keyword </label>
+        <input type="search" name="search" placeholder="  search here..." id="search-box">
+            
+        <button class="fas fa-search"></label>
     </form>
 
 </section>
