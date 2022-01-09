@@ -10,12 +10,14 @@ class ProductsController{
 
     //get//product
     async index(req, res, next) {
-
-        if (req.query.order && req.query.category && req.query.type) {
+        if (req.query.search) {
             let type;
+            let regex = "";
+            let value = [], value_start, value_end;
+            if (req.query.search) {
+                regex = new RegExp(escapeRegex(req.query.search), 'gi');
+            }
             console.log(req.query)
-            const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-
             if (req.query.order == "asc") {
                 if (req.query.type === "price") {
                     type = { new_price: 1, price: 1 }
@@ -24,6 +26,21 @@ class ProductsController{
                     type = { num_rating: 1, rating: 1 }
                 }
                 const item = await Menu.find({ name: regex, category: [req.query.category] }).sort(type).lean();
+                if (req.query.value) {
+                    value = req.query.value.split("-")
+                    value_start = parseInt(value[0], 10)
+                    value_end = parseInt(value[1], 10)
+
+                    for (let i in item) {
+                        if (item[i].new_price < value_start || item[i].new_price > value_end) {
+                            item.splice(i, 1);
+                        }
+                        if (req.query.stocking == "false") {
+                            item.splice(i, 1);
+                        }
+                    }
+                }
+
                 const count = item.length;
                 let items = ProductsService.viewItem(req.query.page, count, item);
                 const totalPageArr = ProductsService.paginationArrayFilter(req.query.page, count, req.query.category, req.query.type, "asc");
@@ -42,6 +59,50 @@ class ProductsController{
                 }
                 const item = await Menu.find({ category: [req.query.category] }).sort(type).lean();
                 const count = item.length;
+
+
+                let items = ProductsService.viewItem(req.query.page, count, item);
+                const totalPageArr = ProductsService.paginationArrayFilter(req.query.page, count, req.query.category, req.query.type, "asc");
+                res.render('product_category/category', {
+                    item: items,
+                    totalPageArrFilter: totalPageArr
+                })
+            }
+
+        }
+        else if (req.query.order && req.query.category && req.query.type) {
+            let type;
+   
+            if (req.query.order == "asc") {
+                if (req.query.type === "price") {
+                    type = { new_price: 1, price: 1 }
+                }
+                else if (req.query.type === "rating") {
+                    type = { num_rating: 1, rating: 1 }
+                }
+                const item = await Menu.find({ category: [req.query.category] }).sort(type).lean();
+                
+
+                const count = item.length;
+                let items = ProductsService.viewItem(req.query.page, count, item);
+                const totalPageArr = ProductsService.paginationArrayFilter(req.query.page, count, req.query.category, req.query.type, "asc");
+                res.render('product_category/category', {
+                    item: items,
+                    totalPageArrFilter: totalPageArr
+                })
+
+            }
+            else if (req.query.order == "dsc") {
+                if (req.query.type === "price") {
+                    type = { new_price: -1, price: -1 }
+                }
+                else if (req.query.type === "rating") {
+                    type = { num_rating: -1, rating: -1 }
+                }
+                const item = await Menu.find({ category: [req.query.category] }).sort(type).lean();
+                const count = item.length;
+
+
                 let items = ProductsService.viewItem(req.query.page, count, item);
                 const totalPageArr = ProductsService.paginationArrayFilter(req.query.page, count, req.query.category, req.query.type, "asc");
                 res.render('product_category/category', {
