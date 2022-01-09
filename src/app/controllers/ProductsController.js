@@ -9,68 +9,59 @@ function escapeRegex(text) {
 class ProductsController{
 
     //get//product
-    async index(req,res,next){
-        
-        if (req.query.order && req.query.category && req.query.type){
+    async index(req, res, next) {
+
+        if (req.query.order && req.query.category && req.query.type) {
             let type;
-            
+            console.log(req.query)
+            const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+
             if (req.query.order == "asc") {
                 if (req.query.type === "price") {
                     type = { new_price: 1, price: 1 }
                 }
                 else if (req.query.type === "rating") {
-                    type = { num_rating: 1, rating: 1}
+                    type = { num_rating: 1, rating: 1 }
                 }
-                const item = await Menu.find({ category: [req.query.category]}).sort( type ).lean();
+                const item = await Menu.find({ name: regex, category: [req.query.category] }).sort(type).lean();
                 const count = item.length;
-                let items = ProductsService.viewItem(req.query.page,count,item);
-                const totalPageArr = ProductsService.paginationArrayFilter(req.query.page, count, req.query.category,req.query.type,"asc"); 
+                let items = ProductsService.viewItem(req.query.page, count, item);
+                const totalPageArr = ProductsService.paginationArrayFilter(req.query.page, count, req.query.category, req.query.type, "asc");
                 res.render('product_category/category', {
-                        item: items,
-                        totalPageArrFilter: totalPageArr
+                    item: items,
+                    totalPageArrFilter: totalPageArr
                 })
-                
+
             }
-            else if (req.query.order == "dsc") {            
+            else if (req.query.order == "dsc") {
                 if (req.query.type === "price") {
                     type = { new_price: -1, price: -1 }
                 }
                 else if (req.query.type === "rating") {
                     type = { num_rating: -1, rating: -1 }
                 }
-                const item = await Menu.find({ category: [req.query.category]}).sort( type ).lean();
+                const item = await Menu.find({ category: [req.query.category] }).sort(type).lean();
                 const count = item.length;
-                let items = ProductsService.viewItem(req.query.page,count,item);
-                const totalPageArr = ProductsService.paginationArrayFilter(req.query.page, count, req.query.category,req.query.type,"asc"); 
+                let items = ProductsService.viewItem(req.query.page, count, item);
+                const totalPageArr = ProductsService.paginationArrayFilter(req.query.page, count, req.query.category, req.query.type, "asc");
                 res.render('product_category/category', {
-                        item: items,
-                        totalPageArrFilter: totalPageArr
+                    item: items,
+                    totalPageArrFilter: totalPageArr
                 })
             }
-           
-        }
-        else if(req.query.search) {
-            const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-            const item = await Menu.find({name: regex},{},{option: "i"}).lean();
-            const count = item.length;
-            let items = ProductsService.viewItem(req.query.page,count,item);
-            const totalPageArr = ProductsService.paginationArray(req.query.page, count, req.query.search); 
-            res.render('product_category/category',{
-                item: items,
-                totalPageArrNotAjax: totalPageArr
-            })
+
         }
         else {
-        Promise.all([Menu.find({}).lean(),Menu.count({})])
-        .then(([item,count])=>{
-            let items = ProductsService.viewItem(req.query.page,count,item);
-            let totalPageArr = ProductsService.paginationArray(req.query.page,count,"");           
-            res.render('product_category/category',{
-                item: items,
-                totalPageArr
-            })
-        }
-        )
+            Promise.all([Menu.find({}).lean(), Menu.count({})])
+                .then(([item, count]) => {
+                    let items = ProductsService.viewItem(req.query.page, count, item);
+                    let totalPageArr = ProductsService.paginationArray(req.query.page, count, "");
+                    res.render('product_category/category', {
+                        item: items,
+                        totalPageArr
+                    })
+                }
+                )
         }
     }
 
