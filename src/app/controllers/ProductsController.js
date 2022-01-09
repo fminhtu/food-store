@@ -10,14 +10,14 @@ class ProductsController{
 
     //get//product
     async index(req, res, next) {
-        if (req.query.search) {
+        if (req.query.search == '' || req.query.search) {
             let type;
-            let regex = "";
+            let regex = '';
             let value = [], value_start, value_end;
+            let item = []
             if (req.query.search) {
                 regex = new RegExp(escapeRegex(req.query.search), 'gi');
             }
-            console.log(req.query)
             if (req.query.order == "asc") {
                 if (req.query.type === "price") {
                     type = { new_price: 1, price: 1 }
@@ -25,19 +25,21 @@ class ProductsController{
                 else if (req.query.type === "rating") {
                     type = { num_rating: 1, rating: 1 }
                 }
-                const item = await Menu.find({ name: regex, category: [req.query.category] }).sort(type).lean();
+                let findObj = { category: [req.query.category] }
+                if (regex != ''){
+                    findObj.name = regex;
+                }
+                let listObj = await Menu.find(findObj).sort(type).lean();
                 if (req.query.value) {
                     value = req.query.value.split("-")
                     value_start = parseInt(value[0], 10)
                     value_end = parseInt(value[1], 10)
 
-                    for (let i in item) {
-                        if (item[i].new_price < value_start || item[i].new_price > value_end) {
-                            item.splice(i, 1);
+                    for (let i in listObj) {
+                        if (listObj[i].new_price >= value_start && listObj[i].new_price <= value_end && req.query.stocking == "true") {
+                            item.push(listObj[i])
                         }
-                        if (req.query.stocking == "false") {
-                            item.splice(i, 1);
-                        }
+                   
                     }
                 }
 
@@ -57,9 +59,28 @@ class ProductsController{
                 else if (req.query.type === "rating") {
                     type = { num_rating: -1, rating: -1 }
                 }
-                const item = await Menu.find({ category: [req.query.category] }).sort(type).lean();
-                const count = item.length;
+                let findObj = { category: [req.query.category] }
+                if (regex != '') {
+                    findObj.name = regex;
+                }
+                let listObj = await Menu.find(findObj).sort(type).lean();
+                if (req.query.value) {
+                    value = req.query.value.split("-")
+                    value_start = parseInt(value[0], 10)
+                    value_end = parseInt(value[1], 10)
+                    
+                    for (let i in listObj) {
+                        if (req.query.type === "price") {
+                            if (listObj[i].new_price >= value_start && listObj[i].new_price <= value_end && req.query.stocking == "true") {
+                                item.push(listObj[i])
+                            }
 
+                        }
+                        
+                    }
+                }
+
+                const count = item.length;
 
                 let items = ProductsService.viewItem(req.query.page, count, item);
                 const totalPageArr = ProductsService.paginationArrayFilter(req.query.page, count, req.query.category, req.query.type, "asc");
@@ -70,7 +91,7 @@ class ProductsController{
             }
 
         }
-        else if (req.query.order && req.query.category && req.query.type) {
+        else if (req.query.order && req.query.category && req.query.type && req.query.search != '') {
             let type;
    
             if (req.query.order == "asc") {
