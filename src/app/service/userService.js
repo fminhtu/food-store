@@ -101,7 +101,7 @@ exports.resetPass = async(email)=>{
         subject: "RESET PASSWORD",
         html: `<h1>Have an issue with your account?</h1>
             <p>Wanna reset your password?
-            <a href="${process.env.DOMAIN_NAME}/user/change-pass?email=${user.email}"> Click here </a>
+            <a href="${process.env.DOMAIN_NAME}/user/forget-pass?email=${user.email}"> Click here </a>
             </p>
         `
     }

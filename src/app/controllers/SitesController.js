@@ -14,10 +14,11 @@ function isEmpty(obj) {
 class SitesController{
 
     //get//new
-    home(req,res, next){
+    async home(req,res, next){
         if(req.user)
-        ProductsService.unAuthToAuth(req.session.unAuthID,req.user.username)
+        await ProductsService.unAuthToAuth(req.session.unAuthID,req.user.username)
         res.render('home', {user: req.user});    
+    
     }
 
     forgetPassword(req,res, next){

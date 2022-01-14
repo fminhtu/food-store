@@ -167,6 +167,16 @@ class ProductsService{
     }
 
     async unAuthToAuth(unAuthID,username){
+    var user = await Cart.findOne({username}).lean();
+    if(user){
+        const temp = await Cart.findOne({username: unAuthID}).lean();
+        if(temp){
+        await Cart.updateOne(
+            {username: username}, { $push: { items: temp.items } },
+        )
+        await Cart.findOneAndDelete({username: unAuthID}).exec();
+        }
+    }else{
         await Cart.updateOne({
             unAuthID
         },{
@@ -174,6 +184,8 @@ class ProductsService{
                 username: username
             }
         });
+
+    }
 }
 
 
